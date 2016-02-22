@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+    <!-- ======== @Region: #highlighted ======== -->
+    <div id="highlighted">
+        <div class="container">
+            <div class="header">
+                <h2 class="page-title">
+                    <span>About Us</span>
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======== @Region: #content ======== -->
+    <div id="content">
+        <div class="container">
+            <!-- About -->
+            <div class="row">
+                <div class="col-md-8">
+                    <!-- About company -->
+                    <div class="block">
+                        <h3 class="block-title sub-title">How It All Began</h3>
+                        <p>
+                            Naval Systems, Inc. (NSI), was established in January 2004 and began operations on
+                            February 1, 2004. We are a Veteran Owned Small Business currently operating in Maryland,
+                            North Carolina, Florida, and California. Our company is built on character. Our core
+                            values include quality, integrity, teamwork and success.
+                        </p>
+
+                        <h3 class="block-title sub-title">Core Values</h3>
+                        <ul>
+                            <li>Value 1</li>
+                            <li>Value 2</li>
+                            <li>Value 3</li>
+                        </ul>
+
+                        <h3 class="block-title sub-title">Goals</h3>
+                        <ul>
+                            <li>
+                                Provide uniformed warriors with the support they need to fight and win our nation's wars
+                            </li>
+                            <li>Employ innovative/disruptive process solutions that enable fast delivery of critical
+                                warfighting capability.
+                            </li>
+                            <li>
+                                Continue strong growth as a vital ongoing business entity according to the value we
+                                deliver.
+                            </li>
+                            <li>Respect and promote the inherent dignity and unique capabilities of every individual.</li>
+                        </ul>
+                        <a href="javascript:void(0);" id="leadership"></a>
+                        <h3 class="block-title sub-title">Leadership Team</h3>
+                        <p>
+                            Gadsen "Ed" Rule, Co-founder and President, served in the United States Navy as a Surface
+                            Warfare Supply Corps Officer and within the acquisition community as a Business/Financial
+                            Manager for the EA-6B Program Office, the Program Executive Officer for Tactical Aircraft
+                            Programs, and the Assistant Secretary of the Navy for Research, Development and Acquisition.
+                        </p>
+                        <p>
+                            Ed has five years of senior management consulting experience supporting the Naval Air Warfare
+                            Center and various Naval Aviation programs and offices. He also served as an executive in
+                            two small businesses providing support services to the Department of Defense. He holds a
+                            Bachelor's of Business Administration degree in Management and a Master's of Business
+                            Administration degree with concentrations in Management and Finance.
+                        </p>
+                    </div>
+
+                    <!-- The team -->
+                    <div class="block margin-top-large" id="team">
+                        <h3 class="block-title">
+                            <span>Meet The Team</span>
+                        </h3>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <ul class="thumbnails list-unstyled">
+                                        <li class="col-xs-6">
+                                            <a href="team-member.htm">
+                                                <img src="{% static 'img/team/jobs.jpg' %}" class="img-polaroid" alt="Jobs" />
+                                            </a>
+                                            <h4>
+                                                <a href="team-member.htm" class="_popover"
+                                                   data-content="Founder & developer"
+                                                   data-original-title="Steve">Steve</a>
+                                            </h4>
+                                        </li>
+                                        <li class="col-xs-6">
+                                            <a href="team-member.htm">
+                                                <img src="{% static 'img/team/adele.jpg' %}" class="img-polaroid" alt="Adele" />
+                                            </a>
+                                            <h4>
+                                                <a href="team-member.htm" class="_popover"
+                                                   data-content="Founder & designer"
+                                                   data-original-title="Adele Bloggs">Adele</a>
+                                            </h4>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <ul class="thumbnails list-unstyled">
+                                        <li class="col-xs-6">
+                                            <a href="team-member.htm">
+                                                <img src="{% static 'img/team/bono.jpg' %}" class="img-polaroid" alt="Adele" />
+                                            </a>
+                                            <h4>
+                                                <a href="team-member.htm" class="_popover"
+                                                   data-content="The Tech Guy & all round good guy!"
+                                                   data-original-title="Bono Bloggs">Bono</a>
+                                            </h4>
+                                        </li>
+                                        <li class="col-xs-6">
+                                            <a href="team-member.htm">
+                                                <img src="{% static 'img/team/deniro.jpg' %}" class="img-polaroid" alt="Robert" />
+                                            </a>
+                                            <h4>
+                                                <a href="team-member.htm" class="_popover"
+                                                   data-content="Junior designer"
+                                                   data-original-title="Robert Bloggs">Robert</a>
+                                            </h4>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- sidebar -->
+                <div class="col-md-4 sidebar sidebar-right">
+                    <div class="inner">
+                        <div class="block">
+                            <h3 class="block-title sub-title">
+                                <span>About Menu</span>
+                            </h3>
+                            <ul class="nav nav-list secondary-nav">
+                                <li>
+                                    <a href="#began"><i class="fa fa-chevron-right"></i> How It All Began</a>
+                                </li>
+                                <li>
+                                    <a href="#leadership"><i class="fa fa-chevron-right"></i> Leadership Team</a>
+                                </li>
+                                <li>
+                                    <a href="#team"><i class="fa fa-chevron-right"></i> Meet The Team</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="block">
+                            <h3 class="block-title sub-title">
+                                <span>Work for us!</span> <span class="label label-warning pull-right">We're hiring!</span>
+                            </h3>
+                            <!--accordion-->
+                            <div class="panel-group panel-primary" id="accordion2">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <a class="panel-toggle" data-toggle="collapse" data-parent="#accordion2"
+                                           href="#collapseOne"> Senior developer (onsite)</a>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            Facilisis sit magnis egestas nec auctor tincidunt natoque. Purus,
+                                            dignissim lectus aliquam vel sit. Nascetur ac lectus nunc placerat ut.
+                                            Quis amet placerat amet in porttitor nunc platea aliquam lundium massa
+                                            magnis, ac, purus etiam vel.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <a class="panel-toggle" data-toggle="collapse" data-parent="#accordion2"
+                                            href="#collapseTwo"> Junior developer (onsite)</a>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            Aliquam aliquam, scelerisque augue? Integer eu? Mus? Est hac, magna et et
+                                            parturient turpis dignissim! In placerat lundium, vel mus ac ac tincidunt
+                                            enim natoque, urna non, integer lorem a ultricies. Aliquam montes tristique
+                                            phasellus in pellentesque sociis sed.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <a class="panel-toggle" data-toggle="collapse" data-parent="#accordion2"
+                                           href="#collapseThree"> Contract developer (onsite & remote)</a>
+                                    </div>
+                                    <div id="collapseThree" class="panel-collapse collapse ">
+                                        <div class="panel-body">
+                                            Pulvinar, enim ac odio nunc lacus vut sociis odio risus enim, sit magnis,
+                                            cursus, in cras elementum? Nec porta, odio urna, lundium a, tincidunt
+                                            porttitor amet in nisi a nec a dis scelerisque placerat pulvinar!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="block mdrs">
+{#                            <a href="#" class="btn btn-block btn-info"><i class="fa fa-download"></i>#}
+{#                                Download Our Press Kit#}
+{#                            </a>#}
+                            <a href="contact.htm" class="btn btn-block btn-success"><i class="fa fa-envelope-o"></i>
+                                Get In Touch</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

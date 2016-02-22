@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+    <!-- ======== @Region: #highlighted ======== -->
+    <div id="highlighted">
+        <div class="container">
+            <div class="header">
+                <h2 class="page-title">
+                    <span>News</span>
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======== @Region: #content ======== -->
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <!--Blog Roll Content-->
+                <div class="col-md-8 blog-list">
+                    <!-- Blog post -->
+                    <div class="media row">
+                        <div class="col-sm-3">
+                            <a class="media-photo" href="blog-post.htm">
+                                <img src="{% static 'img/blog/frog.jpg'%}" alt="Picture of frog by Ben Fredericson" class="media-object img-polaroid" />
+                            </a>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="media-body">
+                                <!-- Meta details -->
+                                <ul class="list-inline meta text-muted">
+                                  <li><i class="glyphicon glyphicon-calendar"></i> <span class="visible-md-inline visible-lg-inline">Created:</span> Tue 10th Feb 2015</li>
+                                  <li><i class="glyphicon glyphicon-user"></i> <span class="visible-md-inline visible-lg-inline">By</span> <a href="team-member.htm">Jo</a></li>
+                                  <li><i class="glyphicon glyphicon-tags"></i> <span class="visible-md-inline visible-lg-inline">Tags:</span> <a href="#">general</a></li>
+                                </ul>
+                                <h4 class="title media-heading">
+                                    <a href="blog-post.htm">amet urna integer urna enim, sit arcu pid in nec?</a>
+                                </h4>
+                                <p>Nam risus magna, fringilla sit amet blandit viverra, dignissim eget est. Ut <strong>commodo ullamcorper risus nec</strong> mattis. Morbi tincidunt posuere turpis eu laoreet. Nulla facilisi. Aenean at massa leo. Vestibulum in varius arcu.</p>
+                                <ul class="list-inline links">
+                                    <li>
+                                        <a href="blog-post.htm" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-circle-arrow-right"></i> Read more</a>
+                                    </li>
+                                    <li>
+                                        <a href="blog-post.htm#comments" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-comment"></i> 73 Comments</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Sidebar-->
+                <div class="col-md-4 sidebar sidebar-right">
+                    <div class="inner">
+                        <div class="block">
+                            <h3 class="block-title sub-title">
+                                <span>Archive</span>
+                            </h3>
+                            <ul class="big-list tags">
+                                <li><a href="#">February 2015</a> (49)</li>
+                                <li><a href="#">January 2015</a> (66)</li>
+                                <li><a href="#">December 2014</a> (9)</li>
+                                <li><a href="#">November 2014</a> (27)</li>
+                                <li><a href="#">October 2014</a> (91)</li>
+                                <li><a href="#">September 2014</a> (22)</li>
+                                <li><a href="#">August 2014</a> (50)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

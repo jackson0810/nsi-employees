@@ -1,0 +1,147 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
+
+        <!-- Bootstrap CSS -->
+        <link href="{% static 'plugins/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+        <!-- Font Awesome CSS -->
+        <link href="{% static 'plugins/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+        <!-- animate.css CSS -->
+        <link href="{% static 'plugins/animate/animate.min.css' %}" rel="stylesheet">
+{#        <link href="{% static 'plugins/flexslider/flexslider.css' %}" rel="stylesheet">#}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/breakingNews.css' %}"/>
+        <!-- Theme style -->
+        <link href="{% static 'css/theme-style.css' %}" rel="stylesheet">
+        <!-- Your custom override -->
+        <link href="{% static 'css/custom-style.css' %}" rel="stylesheet">
+        <!-- @option: Colour skins, choose from:
+            1. colour-blue.css
+            2. colour-red.css
+            3. colour-grey.css
+            4. colour-purple
+            5. colour-green.css
+
+            Uncomment line below to enable
+        -->
+    <!-- Flexslider -->
+
+        <link href="{% static 'css/colour-blue.css' %}" rel="stylesheet" id="colour-scheme">
+
+        {% block extra_css %}{% endblock %}
+
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="{% static 'plugins/html5shiv/dist/html5shiv.js' %}"></script>
+        <script src="{% static 'plugins/respond/respond.min.js' %}"></script>
+        <![endif]-->
+    </head>
+
+    <!-- ======== @Region: body ======== -->
+    <body class="has-navbar-fixed-top page-index-carousel">
+        <!-- ======== @Region: #navigation ======== -->
+        <div id="navigation" class="wrapper">
+            <!--Branding & Navigation Region-->
+            <div class="navbar navbar-fixed-top" id="top">
+                <div class="navbar-inner">
+                    <div class="inner">
+                        <div class="container">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle btn btn-navbar" data-toggle="collapse"
+                                        data-target=".navbar-collapse">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a class="navbar-brand" href="{% url 'external:home' %}" title="Home">
+                                    <img src="{% static 'img/logo_warfighter.png' %}" style="position: absolute"/>
+                                </a>
+                            </div>
+                            <div class="collapse navbar-collapse">
+                                <br/>
+                                <ul class="nav navbar-right" id="main-menu" style="position:relative">
+                                    <li><a href="{% url 'external:about_us' %}">About Us</a></li>
+                                    <li><a href="{% url 'external:services' %}">Services</a></li>
+                                    <li class="dropdown">
+                                        <a href="portfolio.htm" class="dropdown-toggle" id="locations-drop"
+                                           data-toggle="dropdown">Locations
+                                        </a>
+
+                                        <!-- Dropdown Menu -->
+                                        <ul class="dropdown-menu" role="menu" aria-labelledby="locations-drop">
+                                            <li role="menuitem"><a href="{% url 'external:china_lake' %}" tabindex="-1">China Lake</a></li>
+                                            <li role="menuitem"><a href="" tabindex="-1">Jacksonville</a></li>
+                                            <li role="menuitem"><a href="" tabindex="-1">Patuxent River</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{% url 'external:news' %}">News</a></li>
+                                    <li><a href="{% url 'external:clients_partners' %}">Clients/Partners</a></li>
+
+                                    <li class="dropdown">
+                                        <a href="" class="dropdown-toggle" id="contract-drop" data-toggle="dropdown">Contract Vehicles</a>
+
+                                        <!-- Dropdown Menu -->
+                                        <ul class="dropdown-menu" role="menu" aria-labelledby="contract-drop">
+                                            <li role="menuitem"><a href="{% url 'external:seaporte' %}" tabindex="-1">SeaPort-e</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{% url 'external:careers' %}">Careers</a></li>
+                                    <li><a href="">Contact</a></li>
+                                </ul>
+                            </div>
+                            <!--/.nav-collapse -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% block content %}{% endblock %}
+
+        <!-- ======== @Region: #footer ======== -->
+        <footer id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col contact-block">
+                        <address>
+                            <small>
+                                <strong>Naval Systems, Inc.</strong><br/>
+                                21491 Great Mills Road, Suite 100 &#9679; Lexington Park, MD 20653<br/>
+                                Phone: (301) 737-1911 &#9679; Fax: (301) 737-1940<br/>
+                            </small>
+                        </address>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <small>© 2016 Naval Systems, Inc.</small>
+                        <small class="pull-right">For Employees</small>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!--Scripts -->
+        <script src="{% static 'js/jquery.js' %}"></script>
+
+        <!-- Bootstrap Javascript -->
+        <script src="{% static 'plugins/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+        <!--Plugins / Non-Bootstrap Javascript -->
+        <script src="{% static 'plugins/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+        <script src="{% static 'plugins/isotope/dist/isotope.pkgd.min.js' %}"></script>
+{#        <script src="{% static 'plugins/flexslider/jquery.flexslider-min.js' %}"></script>#}
+        <script src="{% static 'js/breakingNews.js' %}"></script>
+
+        <!--Custom scripts mainly used to trigger libraries -->
+        <script src="{% static 'js/script.js' %}"></script>
+
+        {% block extra_scripts %}{% endblock %}
+
+    </body>
+</html>

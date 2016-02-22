@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Clients/Partners{% endblock %}
+
+{% block content %}
+    <!-- ======== @Region: #highlighted ======== -->
+    <div id="highlighted">
+        <div class="container">
+            <div class="header">
+                <h2 class="page-title">
+                    <span>Clients/Partners</span>
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div id="content-below" class="wrapper">
+        <div class="container">
+            <div class="clients block">
+
+			    <div class="row">
+                    <div class="col-sm-6">
+                        <h3 class="block-title"><span>Naval Air Systems Command (NAVAIR)</span></h3>
+                        <ul>
+                            <li>Aging Aircraft Integrated Product Team (AIR-4.1D)</li>
+                            <li>Office of Technology & Intelligence (AIR-4.0X)</li>
+                            <li>Comptroller (AIR-10.0)</li>
+                            <li>Naval Air Warfare Center (NAWC)</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <h3 class="block-title"><span>Naval Aviation Program Offices</span></h3>
+                        <ul>
+                            <li>Aircrew Systems (PMA-202)</li>
+                            <li>Support/Commercial Derivative Aircraft (PMA-207)</li>
+                            <li>E-2/C-2 Program (PMA-231)</li>
+                            <li>EA-6 Program (PMA-234)</li>
+                            <li>H-1 Program (PMA-276)</li>
+                            <li>Presidential Helicopters Program (PMA-274)</li>
+                            <li>Unmanned Aerial Systems Program (PMA-263)</li>
+                            <li>FRC Jacksonville</li>
+                            <li>Advanced Tactical Aircraft Protection Systems (PMA-272)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="block-title">
+                    <span>Industry Partners and Clients</span>
+                </h3>
+                <!--Recommended image sizing: 170px & 70px-->
+                <ul class="thumbnails list-unstyled row">
+                    <li class="col-sm-2">
+                        <a href="http://www.camber.com" class="_tooltip" data-placement="top"
+                           data-original-title="Camber Corporation" title="Camber Corporation">
+                            <img src="{% static 'img/clients/camber.png' %}" class="img-rounded" alt="Camber Corporation" />
+                        </a>
+                    </li>
+                    <li class="col-sm-2">
+                        <a href="http://www.wyle.com" class="_tooltip" data-placement="top"
+                           data-original-title="Wyle Laboratories" title="Wyle Laboratories">
+                            <img src="{% static 'img/clients/wyle.jpeg' %}" class="img-rounded" alt="Wyle Laboratories" />
+                        </a>
+                    </li>
+                    <li class="col-sm-2">
+                        <a href="http://www.lockheedmartin.com/us/products/win-t.html" class="_tooltip" data-placement="top"
+                           data-original-title="Lockheed Martin Information Network Services" title="Lockheed Martin Information Network Services">
+                            <img src="{% static 'img/clients/lockheed-martin.png' %}" class="img-rounded" alt="Lockheed Martin Information Network Services" />
+                        </a>
+                    </li>
+                    <li class="col-sm-2">
+                        <a href="http://www.ruag.com/" class="_tooltip" data-placement="top"
+                           data-original-title="RUAG MISSIM" title="RUAG MISSIM">
+                            <img src="{% static 'img/clients/logo-ruag.png' %}" class="img-rounded" alt="RUAG MISSIM" />
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
