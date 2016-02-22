@@ -3,8 +3,8 @@ from django.conf import settings
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^', include('{}.urls'.format(settings.URL_HOME), namespace=settings.URL_HOME_NAME)),
-
+    url(r'^', include('internal.urls', namespace='internal')),
+    url(r'^security/', include('security.urls', namespace='security')),
     url(r'^admin/', admin.site.urls),
 
     # Shared Application

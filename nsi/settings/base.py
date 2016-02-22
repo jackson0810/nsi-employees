@@ -17,8 +17,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DJANGO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE_ROOT = os.path.dirname(DJANGO_ROOT)
 SITE_NAME = os.path.basename(DJANGO_ROOT)
-LOGIN_URL = 'login'
-LOGOUT_URL = 'logout'
+LOGIN_URL = 'security:login'
+LOGOUT_URL = 'security:logout'
 
 # two hours
 TEMP_PASSWORD_EXPIRES = 2
@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'suit',
-    #'stronghold',
+    'stronghold',
 ]
 
 
@@ -59,7 +59,7 @@ INSTALLED_APPS += [
     'shared'
 ]
 MIDDLEWARE_CLASSES = [
-    #'stronghold.middleware.LoginRequiredMiddleware',
+    'stronghold.middleware.LoginRequiredMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

@@ -30,8 +30,7 @@ echo "Create en_US locale..."
 locale-gen en_US
 dpkg-reconfigure locales
 
-#export SECRET_KEY='(@7o_g@c)+^$m^*802p5fd@vbe=wpw$j6u_hf^3-5=u+n%6cpx'
-#export SECRET_KEY_EMPLOYEES='2s6zo@m4_slqx22q(-sm$b@ko(rho1avnxa=0!t&7j!(vtob^a'
+#export SECRET_KEY='2s6zo@m4_slqx22q(-sm$b@ko(rho1avnxa=0!t&7j!(vtob^a'
 #export DATABASE_NAME='nsilocal'
 #export DATABASE_USER='nsilocal'
 #export DATABASE_PASSWORD='yOmk%ix5KWy^ISlGl!4'

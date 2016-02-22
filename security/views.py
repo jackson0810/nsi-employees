@@ -8,21 +8,15 @@ from django.core.mail import EmailMultiAlternatives
 from django.contrib.auth import get_user_model, authenticate, login, logout
 from django.db import transaction
 
-from filers.models import AccountStatus
 from security.forms import LoginForm, CreatePasswordForm, ResetPasswordForm
-from stockshared.models import AutomaticEmailTemplate
-from stockshared.views import random_password_generator
+from shared.utilities import random_password_generator
 
 from .backends import AuthenticationFailedException
 
 User = get_user_model()
 
 
-def browser_check(request, template_name='browserCheck.html'):
-    return render(request, template_name, locals())
-
-
-def login_form(request, template_name='adminLogin.html'):
+def login_form(request, template_name='login.html'):
     try:
         with transaction.atomic():
             has_error = False
@@ -33,7 +27,6 @@ def login_form(request, template_name='adminLogin.html'):
 
                 email = request.POST['email'].lower()
                 password = request.POST['password']
-                active_account_status = AccountStatus.objects.get(name='Disabled')
 
                 if form.is_valid():
                     user = authenticate(email=email, password=password)
@@ -153,46 +146,46 @@ def reset_password(request, template_name='resetPassword.html'):
     temp_expire = settings.TEMP_PASSWORD_EXPIRES
     has_error = False
 
-    if request.method == 'POST':
-        try:
-            form = ResetPasswordForm(request.POST)
-
-            if form.is_valid():
-                # Random string 10 characters long based on upper, lower, digits and special characters
-                new_password = random_password_generator(size=10)
-
-                email = request.POST['email']
-
-                user = User.objects.get_pgp_annotated().get(account_type=4, email__decrypted=email)
-                user.set_password(new_password)
-                user.password_reset = True
-                user.dt_password_reset = datetime.datetime.now()
-                user.save()
-
-                email_template_data = AutomaticEmailTemplate.objects.get(
-                    email_template_uuid='ff3a8713-35a8-4a2c-9e6d-823e77f14f36')
-
-                email_subject = email_template_data.email_template_subject
-                email_body_html = email_template_data.email_content.replace("#temporary_password#", new_password)
-                email_body_html = email_body_html.replace("#application_url#", settings.APP_URL)
-                email_body_html = email_body_html.replace("#password_expire#", str(temp_expire))
-
-                email = EmailMultiAlternatives(email_subject, '', settings.SYSTEM_EMAIL_ADDRESS, [email])
-                email.attach_alternative(email_body_html, "text/html")
-
-                email.send(fail_silently=False)
-
-                messages.success(request, """Your password reset has been processed. You will receive an email
-                                          containing a temporary password.""")
-
-                return redirect('login')
-            else:
-                # form is not valid
-                messages.error(request, settings.GENERIC_ERROR)
-        except User.DoesNotExist:
-            messages.error(request, 'A password reset request could not be processed for this email address.')
-            return redirect('reset_password')
-    else:
-        form = ResetPasswordForm()
+    # if request.method == 'POST':
+    #     try:
+    #         form = ResetPasswordForm(request.POST)
+    #
+    #         if form.is_valid():
+    #             # Random string 10 characters long based on upper, lower, digits and special characters
+    #             new_password = random_password_generator(size=10)
+    #
+    #             email = request.POST['email']
+    #
+    #             user = User.objects.get_pgp_annotated().get(account_type=4, email__decrypted=email)
+    #             user.set_password(new_password)
+    #             user.password_reset = True
+    #             user.dt_password_reset = datetime.datetime.now()
+    #             user.save()
+    #
+    #             email_template_data = AutomaticEmailTemplate.objects.get(
+    #                 email_template_uuid='ff3a8713-35a8-4a2c-9e6d-823e77f14f36')
+    #
+    #             email_subject = email_template_data.email_template_subject
+    #             email_body_html = email_template_data.email_content.replace("#temporary_password#", new_password)
+    #             email_body_html = email_body_html.replace("#application_url#", settings.APP_URL)
+    #             email_body_html = email_body_html.replace("#password_expire#", str(temp_expire))
+    #
+    #             email = EmailMultiAlternatives(email_subject, '', settings.SYSTEM_EMAIL_ADDRESS, [email])
+    #             email.attach_alternative(email_body_html, "text/html")
+    #
+    #             email.send(fail_silently=False)
+    #
+    #             messages.success(request, """Your password reset has been processed. You will receive an email
+    #                                       containing a temporary password.""")
+    #
+    #             return redirect('login')
+    #         else:
+    #             # form is not valid
+    #             messages.error(request, settings.GENERIC_ERROR)
+    #     except User.DoesNotExist:
+    #         messages.error(request, 'A password reset request could not be processed for this email address.')
+    #         return redirect('reset_password')
+    # else:
+    #     form = ResetPasswordForm()
 
     return render(request, template_name, {'form': form})
