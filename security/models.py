@@ -58,6 +58,12 @@ class CustomUser(AbstractBaseUser):
     REQUIRED_FIELDS = ['account_type']
 
     @property
+    def get_account_type_string(self):
+        at = self.account_type
+
+        return 'Administrator' if at == 1 else 'General User'
+
+    @property
     def get_full_name(self):
         return '{} {}'.format(self.first_name, self.last_name)
 

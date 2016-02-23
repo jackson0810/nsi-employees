@@ -188,4 +188,6 @@ def reset_password(request, template_name='resetPassword.html'):
 
 
 def team_members(request):
-    return render(request, 'team_members.html')
+    team_member_data = User.objects.all()
+
+    return render(request, 'team_members.html', {'team_member_data': team_member_data})
