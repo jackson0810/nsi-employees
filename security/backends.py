@@ -19,11 +19,7 @@ class CustomUserAuthBackend(object):
             return None
 
         try:
-            user = User.objects.get_pgp_annotated().select_related(
-                'report_filer', 'report_filer_assistant', 'administrative_user',
-                'administrative_user__account_type').get(Q(account_type=4) &
-                                                         (Q(email__decrypted=email) |
-                                                          Q(alternate_email__decrypted=email)))
+            user = User.objects.get(email=email)
 
             # verify password
             if user.check_password(password):

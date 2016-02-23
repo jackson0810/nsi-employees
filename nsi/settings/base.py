@@ -33,7 +33,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_AGE = 86400
 
 AUTH_USER_MODEL = 'security.CustomUser'
-AUTHENTICATION_BACKENDS = ['security.backends.CustomUserAuthBackend',]
+AUTHENTICATION_BACKENDS = ['security.backends.CustomUserAuthBackend', ]
 
 # EMAIL_HOST = ''
 # APPLICATION_EMAIL = ''
@@ -50,10 +50,8 @@ INSTALLED_APPS = [
     'stronghold',
 ]
 
-
 # Applications
 INSTALLED_APPS += [
-    'external',
     'internal',
     'security',
     'shared'

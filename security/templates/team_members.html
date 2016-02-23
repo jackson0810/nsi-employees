@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% load html_attributes %}
+
+{% block title %}Administrator Sign In{% endblock %}
+{% block content_highlight %}
+    <!-- ======== @Region: #highlighted ======== -->
+    <div id="highlighted">
+        <div class="container">
+            <div class="header">
+                <h2 class="page-title">
+                    <span>Team Member List</span>
+                </h2>
+                <div class="pull-right" style="padding-top: 15px;">
+                    <button class="btn btn-primary">Add Team Member</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="block">
+        <div class="row">
+            <div class="col-md-6">
+                <form action="{% url 'security:login' %}" method="POST">
+                    <div class="form-group{% if form.email.errors or authentication_error  %} has-error{% endif %}">
+                        {% if form.email.errors %}
+                            <label class="control-label" for="id_email">
+                                <i class="fa fa-exclamation-triangle"></i> Please enter a valid email address.
+                            </label><br>
+                        {% endif %}
+                        {% if authentication_error %}
+                            <label class="control-label" for="id_email">
+                                <i class="fa fa-exclamation-triangle"></i> Your email and/or password are incorrect.
+                            </label>
+                            <br>
+                        {% endif %}
+                        <input type="text" class="form-control" name="email" id="id_email"
+                               placeholder="Email" value="{{ form.email.value|default_if_none:'' }}"/>
+                    </div>
+                    <div class="form-group{% if form.password.errors or authentication_error %} has-error{% endif %}">
+                        {% if form.password.errors %}
+                            <label class="control-label" for="id_password">
+                                <i class="fa fa-exclamation-triangle"></i> Please enter your password.
+                            </label>
+                            <br>
+                        {% endif %}
+                        <input type="password" class="form-control" name="password" placeholder="Password"
+                               id="id_password" />
+                        <span class="muted">&nbsp;Can't remember your password? <a
+                                href="{% url 'security:reset_password' %}">Request to reset your password</a>.
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Sign in</button>
+                    </div>
+                    {% csrf_token %}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

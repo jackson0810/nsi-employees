@@ -1,9 +1,13 @@
 import string
 import random
 import re
+import uuid
 
 from django.conf import settings
 
+
+def make_uuid():
+    return str(uuid.uuid4())
 
 # Random Password Generator
 def random_password_generator(size=10, chars=string.ascii_uppercase + string.ascii_lowercase + string.digits):

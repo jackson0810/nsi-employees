@@ -62,38 +62,27 @@
                                     <img src="{% static 'img/logo_warfighter.png' %}" style="position: absolute"/>
                                 </a>
                             </div>
-                            <div class="collapse navbar-collapse">
-                                <br/>
-                                <ul class="nav navbar-right" id="main-menu" style="position:relative">
-                                    <li><a href="{% url 'internal:about_us' %}">About Us</a></li>
-                                    <li><a href="{% url 'internal:services' %}">Services</a></li>
-                                    <li class="dropdown">
-                                        <a href="portfolio.htm" class="dropdown-toggle" id="locations-drop"
-                                           data-toggle="dropdown">Locations
-                                        </a>
+                            {% if request.user.is_authenticated %}
+                                <div class="collapse navbar-collapse">
+                                    <br/>
+                                    <ul class="nav navbar-right" role="navigation" id="main-menu" style="position:relative">
+                                        <li><a href="">Forms</a></li>
+                                        <li><a href="">News Items</a></li>
 
-                                        <!-- Dropdown Menu -->
-                                        <ul class="dropdown-menu" role="menu" aria-labelledby="locations-drop">
-                                            <li role="menuitem"><a href="{% url 'internal:china_lake' %}" tabindex="-1">China Lake</a></li>
-                                            <li role="menuitem"><a href="" tabindex="-1">Jacksonville</a></li>
-                                            <li role="menuitem"><a href="" tabindex="-1">Patuxent River</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="{% url 'internal:news' %}">News</a></li>
-                                    <li><a href="{% url 'internal:clients_partners' %}">Clients/Partners</a></li>
+                                        <li class="dropdown">
+                                            <a href="" class="dropdown-toggle" id="contract-drop" data-toggle="dropdown">SeaPort-e</a>
 
-                                    <li class="dropdown">
-                                        <a href="" class="dropdown-toggle" id="contract-drop" data-toggle="dropdown">Contract Vehicles</a>
-
-                                        <!-- Dropdown Menu -->
-                                        <ul class="dropdown-menu" role="menu" aria-labelledby="contract-drop">
-                                            <li role="menuitem"><a href="{% url 'internal:seaporte' %}" tabindex="-1">SeaPort-e</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="{% url 'internal:careers' %}">Careers</a></li>
-                                    <li><a href="">Contact</a></li>
-                                </ul>
-                            </div>
+                                            <!-- Dropdown Menu -->
+                                            <ul class="dropdown-menu" role="menu" aria-labelledby="contract-drop">
+                                                <li role="menuitem"><a href="" tabindex="-1">Task Orders</a></li>
+                                                <li role="menuitem"><a href="" tabindex="-1">Functional Capabilities</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="{% url 'security:team_members' %}">Team Members</a></li>
+                                        <li><a href="{% url 'security:logout' %}">Logout</a></li>
+                                    </ul>
+                                </div>
+                            {% endif %}
                             <!--/.nav-collapse -->
                         </div>
                     </div>
@@ -101,7 +90,18 @@
             </div>
         </div>
 
-        {% block content %}{% endblock %}
+        <div>
+            {% block content_highlight %}{% endblock %}
+            <div id="content">
+                <div class="container">
+                    <!--Message Block-->
+                    {% include 'includes/message_block.html' %}
+                    <!--End Message Block-->
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+
+        </div>
 
         <!-- ======== @Region: #footer ======== -->
         <footer id="footer">
@@ -120,7 +120,6 @@
                 <div class="row">
                     <div class="col-md-12">
                         <small>© 2016 Naval Systems, Inc.</small>
-                        <small class="pull-right">For Employees</small>
                     </div>
                 </div>
             </div>

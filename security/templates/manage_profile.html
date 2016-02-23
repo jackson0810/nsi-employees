@@ -1,0 +1,230 @@
+{% extends 'base.html' %}
+
+{% load html_attributes %}
+
+{% block extra_styles %}{% endblock %}
+
+{% block title %}
+    {% if request.current_url_name == 'create_admin_profile' %}Create Account{% else %}Update Profile{% endif %}
+{% endblock %}
+
+{% block extra_scripts %}
+    <script>
+        $(document).ready(function(){
+            //Hide Password Match indicator
+            $('#match_pswd').hide()
+
+            $('#{{ custom_user_form.password.auto_id }}').keyup(function() {
+                // set password variable
+                var pswd = $(this).val();
+                var confirm_pswd = $('#id_password_verify').val();
+
+                $('#match_pswd').show()
+
+                //validate the length
+                if ( pswd.length < 10 ) {
+                    $('#length').removeClass('valid').addClass('invalid');
+                    $('#length i').removeClass('icon-ok').addClass('icon-remove').attr('title','Bang does not meet criteria');
+                } else {
+                    $('#length').removeClass('invalid').addClass('valid');
+                    $('#length i').removeClass('icon-remove').addClass('icon-ok').attr('title','Meets criteria');
+                }
+
+                //validate lower letter
+                if (pswd.match(/[a-z]/)) {
+                    $('#lower').removeClass('invalid').addClass('valid');
+                    $('#lower i').removeClass('icon-remove').addClass('icon-ok').attr('title','Meets criteria');
+                } else {
+                    $('#lower').removeClass('valid').addClass('invalid');
+                    $('#lower i').removeClass('icon-ok').addClass('icon-remove').attr('title','Bang does not meet criteria');
+                }
+
+                //validate capital letter
+                if (pswd.match(/[A-Z]/)) {
+                    $('#capital').removeClass('invalid').addClass('valid');
+                    $('#capital i').removeClass('icon-remove').addClass('icon-ok').attr('title','Meets criteria');
+                } else {
+                    $('#capital').removeClass('valid').addClass('invalid');
+                    $('#capital i').removeClass('icon-ok').addClass('icon-remove').attr('title','Bang does not meet criteria');
+                }
+
+                //validate number
+                if (pswd.match(/\d+/)) {
+                    $('#number').removeClass('invalid').addClass('valid');
+                    $('#number i').removeClass('icon-remove').addClass('icon-ok').attr('title','Meets criteria');
+                } else {
+                    $('#number').removeClass('valid').addClass('invalid');
+                    $('#number i').removeClass('icon-ok').addClass('icon-remove').attr('title','Bang does not meet criteria');
+                }
+
+                //validate symbol
+                if (pswd.match(/[\!@#$%^&\*\(\)]/)) {
+                    $('#symbol').removeClass('invalid').addClass('valid');
+                    $('#symbol i').removeClass('icon-remove').addClass('icon-ok').attr('title','Meets criteria');
+                } else {
+                    $('#symbol').removeClass('valid').addClass('invalid');
+                    $('#symbol i').removeClass('icon-ok').addClass('icon-remove').attr('title','Bang does not meet criteria');
+                }
+
+                //Passwords Match
+                if (pswd == confirm_pswd){
+                    $('#match_pswd').removeClass('invalid').addClass('valid');
+                    $('#match_pswd i').removeClass('icon-remove').addClass('icon-ok').attr('title','Meets criteria');
+                } else {
+                    $('#match_pswd').removeClass('valid').addClass('invalid');
+                    $('#match_pswd i').removeClass('icon-ok').addClass('icon-remove').attr('title','Bang does not meet criteria');
+                }
+            });
+
+            $('#id_password_verify').keyup(function() {
+                // set password variable
+                var confirm_pswd = $(this).val();
+                var pswd = $('#id_password').val();
+
+                $('#match_pswd').show()
+
+                //Passwords Match
+                if (pswd == confirm_pswd){
+                    $('#match_pswd').removeClass('invalid').addClass('valid');
+                    $('#match_pswd i').removeClass('icon-remove').addClass('icon-ok').attr('title','Meets criteria');
+                } else {
+                    $('#match_pswd').removeClass('valid').addClass('invalid');
+                    $('#match_pswd i').removeClass('icon-ok').addClass('icon-remove').attr('title','Bang does not meet criteria');
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content_one %}
+    <div class="page-header">
+        <h1>
+            {% if request.current_url_name == 'create_admin_profile' %}Create Admin Account{% else %}Update Admin Account{% endif %}
+        </h1>
+    </div>
+
+    <section class="account printForm">
+        <div class="well well-small">
+            <form action="" method="POST" class="form-horizontal form-highlightRow">
+                <fieldset class="label-inline">
+                    <legend>Staff Name</legend>
+                    <div class="control-group{% if form.first_name.errors or form.last_name.errors %} error{% endif %}" >
+                        <label class="control-label" for="{{ form.first_name.auto_id }}">First,&nbsp;</label>
+                        <label class="control-label" for="{{ form.last_name.auto_id }}">Last</label>
+                        <div class="controls">
+                            {% if form.first_name.errors or form.last_name.errors %}<span class="help-inline"><i class="icon-warning-sign" title="Bang"></i> First and last name are required.</span><br>{% endif %}
+                            {{ form.first_name|htmlattributes:"class:input-large, placeholder:First Name" }}
+                            {{ form.last_name|htmlattributes:"class:input-xlarge, placeholder:Last Name" }}
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Account Details</legend>
+
+                    {% if request.user.administrative_user.office == 'GAO' and request.user.administrative_user.account_type.id == 2 %}
+                        <input type="hidden" name="account_type" id="id_account_type" value="2" />
+                    {% else %}
+                        <div class="control-group">
+                            <fieldset>
+                                <legend class="control-label">Access Level</legend>
+                                <div class="controls">
+                                    {{ form.account_type }}
+                                    {% if request.user.administrative_user.office|lower == 'gao' %}
+                                        <br>
+                                        <em class="muted">
+                                            <i class="icon-warning-sign" title="Bang"></i> <strong>Note</strong> Level 2 administrators are considered Conflict Reviewers and will not have any other administrative functions.
+                                    </em>
+                                    {% endif %}
+                                </div>
+                            </fieldset>
+                        </div>
+                    {% endif %}
+
+                    <div class="control-group{% if custom_user_form.email.errors or email_exists%} error{% endif %}">
+                        <label class="control-label" for="{{ custom_user_form.email.auto_id }}">Email</label>
+                        <div class="controls">
+                            {% if custom_user_form.email.errors %}<span class="help-inline"><i class="icon-warning-sign" title="Bang"></i> {{ custom_user_form.email.errors|striptags }}</span><br>{% endif %}
+                            {{ custom_user_form.email|htmlattributes:"class:input-xxlarge, placeholder:Your email" }}
+
+                        </div>
+                    </div>
+                    <div class="control-group{% if custom_user_form.email.errors or email_error or email_exists%} error{% endif %}">
+                        <label class="control-label" for="id_email_verify">Confirm email</label>
+                        <div class="controls">
+                            {% if email_error %}<span class="help-inline"><i class="icon-warning-sign" title="Bang"></i> Email does not match. Try again.</span><br>{% endif %}
+                            <input type="text" name="email_verify" id="id_email_verify" class="input-xxlarge" placeholder="Re-enter your email." value="{{ email_verify }}"/>
+
+                        </div>
+                    </div>
+
+                    {% if request.user.administrative_user.administrative_uuid == form.administrative_uuid.value  %}
+                        <div class="row-fluid">
+                            <div class="muted">
+                                <i>To keep current password, leave blank. To change, enter a new password.</i>
+                            </div>
+                            <div class="span6 pull-right" id="pswd_info">
+                                Passwords can not contain spaces but must include <strong>at least</strong>:
+
+                                <ul>
+                                    <li id="length" class=""><i class=""></i>10 characters</li>
+                                    <li id="capital" class=""><i class=""></i>1 capital letter</li>
+                                    <li id="lower" class=""><i class=""></i>1 lowercase letter</li>
+                                    <li id="number" class=""><i class=""></i>1 number</li>
+                                    <li id="symbol" class=""><i class=""></i>1 symbol ! @ # $ % ^ & * ( )</li>
+                                </ul>
+                            </div>
+                            <div class="span6">
+                                <br />
+                                <div class="control-group{% if custom_user_form.password.errors or password_error %} error{% endif %}">
+                                    <label class="control-label" for="{{ custom_user_form.password.auto_id }}">Change password to</label>
+                                    <div class="controls">
+                                        {% if password_error %}<span class="help-inline"><i class="icon-warning-sign" title="Bang"></i> {{ password_error }}</span><br>{% endif %}
+                                        {{ custom_user_form.password|htmlattributes:"class:input-large, maxlength:100" }}
+
+                                    </div>
+                                </div>
+                                <div class="control-group noPrint{% if custom_user_form.password.errors or password_error %} error{% endif %}">
+                                    <label class="control-label" for="id_password_verify">Confirm password change</label>
+                                    <div class="controls">
+                                        {% if password_error %}<span class="help-inline"><i class="icon-warning-sign" title="Bang"></i> {{ password_error }}</span><br>{% endif %}
+                                        <input type="password" name="password_verify" id="id_password_verify" class="input-large" maxlength="100"/>
+                                        <span id="match_pswd" class=""><br/><i class=""></i> Passwords match</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <div class="control-group{% if form.office_phone.errors or office_phone_error %} error{% endif %}">
+                        <label class="control-label" for="{{ form.office_phone.auto_id }}">Office phone</label>
+                        <div class="controls">
+                            {% if form.office_phone.errors %}<span class="help-inline"><i class="icon-warning-sign" title="Bang"></i> Phone is required.</span><br>{% endif %}
+                            {% if office_phone_error %}<span class="help-inline"><i class="icon-warning-sign" title="Bang"></i> Please enter a valid phone number.</span><br>{% endif %}
+                            {{ form.office_phone|htmlattributes:"class:input-medium, placeholder:(___)___-____" }}
+
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <fieldset>
+							<legend class="control-label">Status</legend>
+							<div class="controls">
+								{{ form.account_status }}
+							</div>
+						</fieldset>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary noPrint">{% if request.current_url_name == 'create_admin_profile' %}Create Account{% else %}Update Account{% endif %}</button>
+                    {{ form.administrative_uuid }}
+                    {{ custom_user_form.administrative_user }}
+                    <input type="hidden" name="office" id="{{ form.office_auto_id }}" value="{{ request.user.administrative_user.office }}" />
+                    {% csrf_token %}
+                </fieldset>
+            </form>
+        </div>
+    </section>
+
+
+
+{% endblock %}

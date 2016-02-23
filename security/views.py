@@ -1,5 +1,5 @@
 import re
-import datetime
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.shortcuts import redirect, render
@@ -35,31 +35,25 @@ def login_form(request, template_name='login.html'):
                         if user.is_active:
                             # check to see if the user has reset their password and if the time period has expired
                             if user.password_reset:
-                                account_time_delta = user.dt_password_reset + datetime.timedelta(
+                                account_tdelta = user.dt_password_reset + timedelta(
                                     hours=settings.TEMP_PASSWORD_EXPIRES)
 
-                                if datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") >= account_time_delta.strftime("%Y-%m-%d %H:%M:%S"):
+                                if datetime.now().strftime("%Y-%m-%d %H:%M:%S") >= account_tdelta.strftime("%Y-%m-%d %H:%M:%S"):
                                     messages.error(request, 'Your temporary password has expired.  You must request a new one.')
                                     return redirect('reset_password')
 
                             if user.password_reset:
-                                return redirect('create_new_password', user.administrative_user.administrative_uuid)
+                                return redirect('create_new_password', user.user_uuid)
 
                             user.backend = settings.AUTHENTICATION_BACKENDS[0]
 
                             login(request, user)
 
                             # record the date/time the user last logged in.
-                            user.dt_last_login = datetime.datetime.now()
+                            user.dt_last_login = datetime.now()
                             user.save()
 
-                            if user.administrative_user.office == 'GAO' and user.administrative_user.account_type.id == 2:
-                                return redirect('conflict_reviewer')
-                            else:
-                                if not user.administrative_user.office == 'OPR':
-                                    return redirect('dashboard')
-                                else:
-                                    return redirect('reports')
+                            return redirect('internal:home')
                         else:
                             has_error = True
                             messages.error(request, 'You do not have an active account.')
@@ -73,9 +67,11 @@ def login_form(request, template_name='login.html'):
             else:
                 form = LoginForm()
     except AuthenticationFailedException as e:
+        raise
         messages.error(request, e)
         authentication_error = True
     except Exception as e:
+        raise
         messages.error(request, 'An error occurred: {} - {}'.format(type(e), e))
 
     return render(request, template_name, locals())
@@ -85,7 +81,7 @@ def user_logout(request):
     logout(request)
 
     messages.success(request, 'You have logged out.')
-    return redirect('login')
+    return redirect('security:login')
 
 
 def create_new_password(request, user_id, template_name='createNewPassword.html'):
@@ -189,3 +185,7 @@ def reset_password(request, template_name='resetPassword.html'):
     #     form = ResetPasswordForm()
 
     return render(request, template_name, {'form': form})
+
+
+def team_members(request):
+    return render(request, 'team_members.html')

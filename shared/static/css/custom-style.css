@@ -44,13 +44,13 @@
 }
 #footer {
     min-height: 100px;
-    position:fixed;
-    left:0px;
-    bottom:0px;
-    width:100%;
+    /*position:fixed;*/
+    /*left:0px;*/
+    /*bottom:0px;*/
+    /*width:100%;*/
 }
 #footer .inner {
-  padding: 15px 0;
+  padding: 0px 0;
 }
 /*
  * --------------------------------------------------
@@ -117,4 +117,14 @@ ul.shaded-glyph li i.glyphicon {
     opacity: 0.5;
     filter: alpha(opacity=50);
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+}
+
+.loginName {
+  display: inline-block;
+  float: left;
+  max-width: 126px;
+  overflow: hidden;
+  text-decoration: underline;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
