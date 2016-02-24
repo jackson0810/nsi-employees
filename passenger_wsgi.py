@@ -9,7 +9,7 @@ if sys.executable != INTERP:
 
 cwd = os.getcwd()
 sys.path.append(cwd)
-sys.path.append(cwd + '/nsi')
+sys.path.append(cwd + '/nsi-employees')
 
 sys.path.insert(0, cwd + '/env/bin')
 
