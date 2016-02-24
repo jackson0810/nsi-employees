@@ -69,11 +69,9 @@ def login_form(request, template_name='login.html'):
             else:
                 form = LoginForm()
     except AuthenticationFailedException as e:
-        raise
         messages.error(request, e)
         authentication_error = True
     except Exception as e:
-        raise
         messages.error(request, 'An error occurred: {} - {}'.format(type(e), e))
 
     return render(request, template_name, locals())

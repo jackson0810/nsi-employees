@@ -26,11 +26,13 @@ class CustomUserForm(ModelForm):
         super(CustomUserForm, self).__init__(*args, **kwargs)
 
         account_types = [(1, 'Administrator'), (2, 'General User')]
+        bool_choices = ((True, 'Yes'), (False, 'No'))
 
         self.fields['mobile_phone'].required = False
         self.fields['email'].error_messages = {'required': 'Email is required.'}
         self.fields['account_type'] = forms.ChoiceField(choices=account_types, widget=RadioSelectInline)
+        self.fields['is_active'] = forms.ChoiceField(choices=bool_choices, widget=RadioSelectInline)
 
     class Meta(object):
         model = CustomUser
-        fields = ['first_name', 'last_name', 'email', 'office_phone', 'mobile_phone', 'account_type']
+        fields = ['first_name', 'last_name', 'email', 'office_phone', 'mobile_phone', 'account_type', 'is_active']

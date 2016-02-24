@@ -145,7 +145,21 @@
                                         {{ form.account_type }}
                                         {% if form.account_type.errors %}
                                             <label class="control-label" for="{{ form.account_type.auto_id }}">
-                                                <i class="fa fa-exclamation-triangle"></i> Account tye is required.
+                                                <i class="fa fa-exclamation-triangle"></i> Account type is required.
+                                            </label><br>
+                                        {% endif %}
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                            <div class="form-group{% if form.is_active.errors  %} has-error{% endif %}">
+                                <fieldset>
+                                    <div class="controls">
+                                        <label>Active</label>
+                                        {{ form.is_active }}
+                                        {% if form.is_active.errors %}
+                                            <label class="control-label" for="{{ form.is_active.auto_id }}">
+                                                <i class="fa fa-exclamation-triangle"></i> Account status is required.
                                             </label><br>
                                         {% endif %}
                                     </div>

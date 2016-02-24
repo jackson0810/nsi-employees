@@ -142,3 +142,9 @@ ul.shaded-glyph li i.glyphicon {
 .invalid {
     color: #89171A;
 }
+
+.radio.inline,
+.checkbox.inline {
+  vertical-align: top;
+  white-space: nowrap;
+}
