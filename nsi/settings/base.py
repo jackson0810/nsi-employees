@@ -36,7 +36,7 @@ AUTH_USER_MODEL = 'security.CustomUser'
 AUTHENTICATION_BACKENDS = ['security.backends.CustomUserAuthBackend', ]
 
 # EMAIL_HOST = ''
-# APPLICATION_EMAIL = ''
+APPLICATION_EMAIL = 'derrick.jackson73@gmail.com'
 
 # Application definition
 INSTALLED_APPS = [

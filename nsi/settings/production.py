@@ -1,5 +1,7 @@
 from .base import *
 
+
+APPLICATION_URL = 'https://employees.navalsystemsinc.com'
 DEBUG = True
 ALLOWED_HOSTS = ['navalsystemsinc.com']
 

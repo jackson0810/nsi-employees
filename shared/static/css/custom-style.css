@@ -128,3 +128,17 @@ ul.shaded-glyph li i.glyphicon {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+#pswd_info ul {
+    margin-left: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.valid {
+    color: #3a7d34;
+}
+
+.invalid {
+    color: #89171A;
+}

@@ -1,6 +1,5 @@
 from django import forms
 from django.forms import ModelForm
-from django.db.models import Q
 
 from shared.forms import RadioSelectInline
 from security.models import CustomUser
@@ -35,17 +34,3 @@ class CustomUserForm(ModelForm):
     class Meta(object):
         model = CustomUser
         fields = ['first_name', 'last_name', 'email', 'office_phone', 'mobile_phone', 'account_type']
-
-    def clean(self):
-        cleaned_data = super(CustomUserForm, self).clean()
-        email = self.cleaned_data.get('email').lower()
-        user_uuid = self.cleaned_data.get('user_uuid')
-
-        if email:
-            email_found = CustomUser.objects.filter(email=email)
-
-            if email_found:
-                self._errors['email'] = self.error_class([u'Email is already in use.'])
-                del cleaned_data['email']
-
-        return cleaned_data

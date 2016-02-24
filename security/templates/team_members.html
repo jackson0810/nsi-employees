@@ -136,7 +136,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon" id="mobilephone"><i class="fa fa-mobile-phone"></i></span>
-                                    {{ form.mobile_phone|htmlattributes:"class: form-control, placeholder:Mobile Phone aria-describedby:mobilephone" }}
+                                    {{ form.mobile_phone|htmlattributes:"class: form-control, placeholder:Mobile Phone, aria-describedby:mobilephone" }}
                                 </div>
                             </div>
                             <div class="form-group{% if form.account_type.errors  %} has-error{% endif %}">
@@ -154,6 +154,7 @@
 
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Save</button>
+                                <a href="{% url 'security:team_members' %}">Cancel</a>
                             </div>
                             <input type="hidden" name="user_uuid" value="{{ user_uuid }}"/>
                             {% csrf_token %}
