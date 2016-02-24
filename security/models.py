@@ -34,11 +34,9 @@ class CustomUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractBaseUser):
-    ACCOUNT_TYPES = [(1, 'Administrator'), (2, 'General User'), (3, 'News Admin')]
-
     username = models.CharField(max_length=250, blank=True, null=True, verbose_name='User Name')
     user_uuid = models.CharField(max_length=36, default=make_uuid, db_index=True)
-    account_type = models.IntegerField(choices=ACCOUNT_TYPES)
+    account_type = models.IntegerField()
     first_name = models.CharField(max_length=100, verbose_name='First Name')
     last_name = models.CharField(max_length=100, verbose_name='Last Name')
     office_phone = models.CharField(max_length=14, null=True, blank=True, verbose_name='office phone')

@@ -8,7 +8,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.contrib.auth import get_user_model, authenticate, login, logout
 from django.db import transaction
 
-from security.forms import LoginForm, CreatePasswordForm, ResetPasswordForm
+from security.forms import LoginForm, CreatePasswordForm, ResetPasswordForm, CustomUserForm
 from shared.utilities import random_password_generator
 
 from .backends import AuthenticationFailedException
@@ -187,7 +187,33 @@ def reset_password(request, template_name='resetPassword.html'):
     return render(request, template_name, {'form': form})
 
 
-def team_members(request):
+def team_members(request, user_uuid=None):
     team_member_data = User.objects.all()
+    user = None
 
-    return render(request, 'team_members.html', {'team_member_data': team_member_data})
+    if user_uuid:
+        user = team_member_data.get(user_uuid=user_uuid)
+
+    if request.method == 'POST':
+        if user:
+            form = CustomUserForm(request.POST, instance=user)
+        else:
+            form = CustomUserForm(request.POST)
+
+        if form.is_valid():
+            team_member = form.save(commit=False)
+
+            #email_found = team_member_data.filter(email=email)
+            team_member.save()
+
+            messages.success(request, 'The team member data was saved successfully.')
+        else:
+            messages.error(request, settings.GENERIC_ERROR)
+    else:
+        if user:
+            form = CustomUserForm(instance=user)
+        else:
+            form = CustomUserForm()
+
+    return render(request, 'team_members.html', {'form': form, 'team_member_data': team_member_data,
+                                                 'user_uuid': user_uuid})
