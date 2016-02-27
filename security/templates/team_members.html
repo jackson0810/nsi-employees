@@ -92,7 +92,7 @@
                 <div class="inner">
                     <div class="block">
                         <h3 class="block-title sub-title">
-                            <span>Add Team Member</span>
+                            <span>{% if user_uuid %}Edit{% else %}Add{% endif %} Team Member</span>
                         </h3>
                         <form action="" method="POST">
                             <div class="form-group{% if form.first_name.errors  %} has-error{% endif %}">
@@ -142,12 +142,14 @@
                             <div class="form-group{% if form.account_type.errors  %} has-error{% endif %}">
                                 <fieldset>
                                     <div class="controls">
+                                        <label>Account Type</label>
                                         {{ form.account_type }}
                                         {% if form.account_type.errors %}
                                             <label class="control-label" for="{{ form.account_type.auto_id }}">
                                                 <i class="fa fa-exclamation-triangle"></i> Account type is required.
-                                            </label><br>
+                                            </label>
                                         {% endif %}
+                                        <small><i class="fa fa-comment"> </i> General Users can only view the forms area.</small>
                                     </div>
                                 </fieldset>
                             </div>
@@ -160,7 +162,7 @@
                                         {% if form.is_active.errors %}
                                             <label class="control-label" for="{{ form.is_active.auto_id }}">
                                                 <i class="fa fa-exclamation-triangle"></i> Account status is required.
-                                            </label><br>
+                                            </label>
                                         {% endif %}
                                     </div>
                                 </fieldset>

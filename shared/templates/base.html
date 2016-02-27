@@ -67,18 +67,20 @@
                                     <br/>
                                     <ul class="nav navbar-right" role="navigation" id="main-menu" style="position:relative">
                                         <li><a href="">Forms</a></li>
-                                        <li><a href="{% url 'internal:news_items' %}">News Items</a></li>
+                                        {% if request.user.account_type == 1 %}
+                                            <li><a href="{% url 'internal:news_items' %}">News Items</a></li>
 
-                                        <li class="dropdown">
-                                            <a href="" class="dropdown-toggle" id="contract-drop" data-toggle="dropdown">SeaPort-e</a>
+                                            <li class="dropdown">
+                                                <a href="" class="dropdown-toggle" id="contract-drop" data-toggle="dropdown">SeaPort-e</a>
 
-                                            <!-- Dropdown Menu -->
-                                            <ul class="dropdown-menu" role="menu" aria-labelledby="contract-drop">
-                                                <li role="menuitem"><a href="" tabindex="-1">Task Orders</a></li>
-                                                <li role="menuitem"><a href="" tabindex="-1">Functional Capabilities</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="{% url 'security:team_members' %}">Team Members</a></li>
+                                                <!-- Dropdown Menu -->
+                                                <ul class="dropdown-menu" role="menu" aria-labelledby="contract-drop">
+                                                    <li role="menuitem"><a href="" tabindex="-1">Task Orders</a></li>
+                                                    <li role="menuitem"><a href="{% url 'internal:functional_capabilities' %}" tabindex="-1">Functional Capabilities</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'security:team_members' %}">Team Members</a></li>
+                                        {% endif %}
                                         <li><a href="{% url 'security:logout' %}">Logout</a></li>
                                     </ul>
                                 </div>

@@ -15,7 +15,7 @@
             $('#grid_items').dataTable( {
                 "dom": '<"top"<"pull-left input-short"f><"pull-right"i><"clear">>rt<"bottom"p<"clear">>',  //placement of the search box to the left
                 "paging": true,       //turn off paging so that all results show
-                "pageLength": 25,
+                "pageLength": 10,
                 "lengthChange": false, //drop-down for pagination
                 "searching": true,     //search box
                 "info": true,          //showing # of # line
@@ -48,7 +48,7 @@
         <div class="container">
             <div class="header">
                 <h2 class="page-title">
-                    <span>News Items</span>
+                    <span>Functional Capabilities</span>
                 </h2>
             </div>
         </div>
@@ -63,35 +63,31 @@
                     <thead>
                         <tr>
                             <th scope="col">Title</th>
-                            <th scope="col">Featured</th>
-                            <th scope="col">Year</th>
                             <th scope="col">&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
-                    {% for news_item in news_items %}
+                    {% for func_item in func_items %}
                         <tr>
                             <td>
-                                <a href="{% url 'internal:edit_news_items' news_item.news_uuid %}">{{ news_item.title }}</a>
+                                <a href="{% url 'internal:edit_func_capability' func_item.capability_uuid %}">{{ func_item.title }}</a>
                                 <small class="media-body">
                                     <ul class="list-inline meta text-muted">
                                       <li>
                                           <i class="glyphicon glyphicon-calendar"></i>
                                           <span class="visible-md-inline visible-lg-inline">Date:</span>
-                                          {{ news_item.dt_updated|date:"n/d/Y" }}
+                                          {{ func_item.dt_updated|date:"n/d/Y" }}
                                       </li>
                                       <li>
                                           <i class="glyphicon glyphicon-user"></i>
                                           <span class="visible-md-inline visible-lg-inline">By</span>
-                                          <a href="{% url 'security:edit_team_member' news_item.updated_by.user_uuid %}">
-                                              {{ news_item.updated_by.get_full_name }}</a>
+                                          <a href="{% url 'security:edit_team_member' func_item.updated_by.user_uuid %}">
+                                              {{ func_item.updated_by.get_full_name }}</a>
                                       </li>
                                     </ul>
                                 </small>
                             </td>
-                            <td>{{ news_item.featured|yesno|title }}</td>
-                            <td>{{ news_item.dt_updated|date:"Y" }}</td>
-                            <td><a href="{% url 'internal:delete_news_item' news_item.news_uuid %}" title="Delete news item."><i class="fa fa-remove"></i> </a> </td>
+                            <td><a href="{% url 'internal:delete_func_capability' func_item.capability_uuid %}" title="Delete functional capability."><i class="fa fa-remove"></i> </a> </td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -101,7 +97,7 @@
                 <div class="inner">
                     <div class="block">
                         <h3 class="block-title sub-title">
-                            <span>{% if news_uuid %}Edit{% else %}Add{% endif %} a News Item</span>
+                            <span>{% if capability_uuid %}Edit{% else %}Add{% endif %} a Functional Capability</span>
                         </h3>
                         <form action="" method="POST">
                             <div class="form-group{% if form.title.errors  %} has-error{% endif %}">
@@ -123,15 +119,6 @@
 
                                 </script>
                             </div>
-                            <div class="form-group{% if form.featured.errors  %} has-error{% endif %}">
-                                <fieldset>
-                                    <div class="controls">
-                                        <label>Featured?</label>
-                                        {{ form.featured }}
-                                        <small>If selected this item will appear in "Latest News" banner on the home page.</small>
-                                    </div>
-                                </fieldset>
-                            </div>
                             <div class="form-group{% if form.is_active.errors  %} has-error{% endif %}">
                                 <fieldset>
                                     <div class="controls">
@@ -147,9 +134,9 @@
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Save</button>
-                                <a href="{% url 'internal:news_items' %}">Cancel</a>
+                                <a href="{% url 'internal:functional_capabilities' %}">Cancel</a>
                             </div>
-                            <input type="hidden" name="news_uuid" value="{{ news_uuid }}"/>
+                            <input type="hidden" name="capability_uuid" value="{{ capability_uuid }}"/>
                             {% csrf_token %}
                         </form>
                     </div>

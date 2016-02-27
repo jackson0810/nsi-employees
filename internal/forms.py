@@ -9,8 +9,18 @@ from shared.forms import RadioSelectInline
 class NewsItemForm(ModelForm):
     bool_choices = ((True, 'Yes'), (False, 'No'))
 
-    #featured = forms.ChoiceField(choices=bool_choices, widget=RadioSelectInline, initial=False)
+    is_active = forms.ChoiceField(choices=bool_choices, widget=RadioSelectInline, initial=True)
 
     class Meta:
         model = NewsItem
-        fields = ['featured', 'title', 'text']
+        fields = ['featured', 'title', 'text', 'is_active']
+
+
+class FunctionalCapabilityForm(ModelForm):
+    bool_choices = ((True, 'Yes'), (False, 'No'))
+
+    is_active = forms.ChoiceField(choices=bool_choices, widget=RadioSelectInline, initial=True)
+
+    class Meta:
+        model = FunctionalCapability
+        fields = ['title', 'text', 'is_active']

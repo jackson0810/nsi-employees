@@ -5,7 +5,16 @@ from django.conf import settings
 urlpatterns = patterns(
     'internal.views',
     url(r'^$', 'home', name='home'),
+
+    # News Items
     url(r'^news/items/$', 'news_items', name='news_items'),
     url(r'^process/news/item/{}/$'.format(settings.UUID_PATTERN_REGEX), 'news_items', name='edit_news_items'),
-)
+    url(r'^delete/news/item/{}/$'.format(settings.UUID_PATTERN_REGEX), 'delete_news_item', name='delete_news_item'),
 
+    # Functional Capabilities
+    url(r'^functional/capabilities/$', 'functional_capabilities', name='functional_capabilities'),
+    url(r'^process/functional/capability/{}/$'.format(settings.UUID_PATTERN_REGEX), 'functional_capabilities',
+        name='edit_func_capability'),
+    url(r'^delete/functional/capability/{}/$'.format(settings.UUID_PATTERN_REGEX), 'delete_func_capability',
+        name='delete_func_capability'),
+)

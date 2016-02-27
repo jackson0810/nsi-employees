@@ -31,7 +31,7 @@ class CustomUserForm(ModelForm):
         self.fields['mobile_phone'].required = False
         self.fields['email'].error_messages = {'required': 'Email is required.'}
         self.fields['account_type'] = forms.ChoiceField(choices=account_types, widget=RadioSelectInline)
-        self.fields['is_active'] = forms.ChoiceField(choices=bool_choices, widget=RadioSelectInline)
+        self.fields['is_active'] = forms.ChoiceField(choices=bool_choices, widget=RadioSelectInline, initial=True)
 
     class Meta(object):
         model = CustomUser
