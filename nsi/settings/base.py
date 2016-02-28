@@ -35,7 +35,7 @@ SESSION_COOKIE_AGE = 86400
 AUTH_USER_MODEL = 'security.CustomUser'
 AUTHENTICATION_BACKENDS = ['security.backends.CustomUserAuthBackend', ]
 
-# EMAIL_HOST = ''
+EMAIL_HOST = 'mail.navalsystemsinc.com'
 APPLICATION_EMAIL = 'derrick.jackson73@gmail.com'
 
 # Application definition
