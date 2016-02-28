@@ -65,6 +65,7 @@
                             <th scope="col">Title</th>
                             <th scope="col">Featured</th>
                             <th scope="col">Year</th>
+                            <th scope="col">Active</th>
                             <th scope="col">&nbsp;</th>
                         </tr>
                     </thead>
@@ -91,6 +92,7 @@
                             </td>
                             <td>{{ news_item.featured|yesno|title }}</td>
                             <td>{{ news_item.dt_updated|date:"Y" }}</td>
+                            <td>{{ news_item.is_active|yesno|title }}</td>
                             <td><a href="{% url 'internal:delete_news_item' news_item.news_uuid %}" title="Delete news item."><i class="fa fa-remove"></i> </a> </td>
                         </tr>
                     {% endfor %}

@@ -99,12 +99,6 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-STATIC_ROOT = os.path.dirname(BASE_DIR) + '/public/static/'
-STATIC_URL = '/static/'
-
-MEDIA_ROOT = STATIC_ROOT + 'img/'
-MEDIA_URL = '/static/img/'
-
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 
@@ -113,14 +107,6 @@ MEDIA_URL = '/static/img/'
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-)
-
-# DJANGO-STRONGHOLD
-STRONGHOLD_DEFAULTS = False
-STRONGHOLD_PUBLIC_URLS = (
-    r'^%s.+$' % STATIC_URL,
-    r'^/__debug__/.+$',  # needed for django debug toolbar
-    r'^/security/(.+)?$',
 )
 
 DATABASES = {

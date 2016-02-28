@@ -1,8 +1,10 @@
+import shutil
+
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.conf import settings
 
-from internal.forms import NewsItemForm, FunctionalCapabilityForm
+from internal.forms import NewsItemForm, FunctionalCapabilityForm, TaskOrderForm
 from shared.models import NewsItem, FunctionalCapability, TaskOrder, ImageItem
 
 
@@ -65,7 +67,7 @@ def functional_capabilities(request, capability_uuid=None):
         except FunctionalCapability.DoesNotExist:
             messages.error(request, 'The functional capability selected to be edited no longer exists.')
 
-            return redirect('internal:news_items')
+            return redirect('internal:functional_capabilities')
 
     if request.method == 'POST':
         form = FunctionalCapabilityForm(request.POST, instance=func_capability_item)
@@ -79,7 +81,6 @@ def functional_capabilities(request, capability_uuid=None):
             messages.success(request, 'The functional capability was saved successfully.')
             return redirect('internal:functional_capabilities')
         else:
-            print(form.errors)
             messages.error(request, settings.GENERIC_ERROR)
     else:
         form = FunctionalCapabilityForm(instance=func_capability_item)
@@ -94,9 +95,64 @@ def delete_func_capability(request, capability_uuid):
         func_capability_item.delete()
 
         messages.success(request, 'The functional capability was deleted')
-    except NewsItem.DoesNotExist:
+    except FunctionalCapability.DoesNotExist:
         messages.error(request, 'The functional capability selected to be deleted no longer exists.')
     except Exception as e:
         messages.error(request, 'An error occurred deleting the selected functional capability.  Please try again.')
 
     return redirect('internal:functional_capabilities')
+
+
+def handle_uploaded_file(f):
+    with open('{}/documents'.format(settings.STATIC_ROOT), 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+
+
+def task_orders(request, task_uuid=None):
+    items = TaskOrder.objects.all()
+    task_order_item = None
+
+    if task_uuid:
+        try:
+            task_order_item = items.get(task_uuid=task_uuid)
+        except TaskOrder.DoesNotExist:
+            messages.error(request, 'The task order selected to be edited no longer exists.')
+
+            return redirect('internal:task_orders')
+
+    if request.method == 'POST':
+        form = TaskOrderForm(request.POST, request.FILES, instance=task_order_item)
+
+        if form.is_valid():
+            item = form.save(commit=False)
+            item.created_by = request.user
+            item.updated_by = request.user
+            item.save()
+
+            # move the document to shared/static/documents
+            shutil.move('{}{}'.format(settings.MEDIA_ROOT, item.document), '{}/shared/static/documents/'.format(
+                settings.SITE_ROOT, settings.STATIC_ROOT,))
+
+            messages.success(request, 'The task order was saved successfully.')
+            return redirect('internal:task_orders')
+        else:
+            messages.error(request, settings.GENERIC_ERROR)
+    else:
+        form = TaskOrderForm(instance=task_order_item)
+
+    return render(request, 'task_orders.html', {'form': form, 'task_order_items': items, 'task_uuid': task_uuid})
+
+
+def delete_task_order(request, task_uuid):
+    try:
+        task_order_item = TaskOrder.objects.get(task_uuid=task_uuid)
+        task_order_item.delete()
+
+        messages.success(request, 'The task order was deleted')
+    except TaskOrder.DoesNotExist:
+        messages.error(request, 'The task order selected to be deleted no longer exists.')
+    except Exception as e:
+        messages.error(request, 'An error occurred deleting the selected task order.  Please try again.')
+
+    return redirect('internal:task_orders')

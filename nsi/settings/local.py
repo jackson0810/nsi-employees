@@ -10,6 +10,12 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['SECRET_KEY']
 
+STATIC_ROOT = os.path.dirname(BASE_DIR) + '/static/'
+STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -20,3 +26,11 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+
+# DJANGO-STRONGHOLD
+STRONGHOLD_DEFAULTS = False
+STRONGHOLD_PUBLIC_URLS = (
+    r'^%s.+$' % STATIC_URL,
+    r'^/__debug__/.+$',  # needed for django debug toolbar
+    r'^/security/(.+)?$',
+)

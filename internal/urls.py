@@ -17,4 +17,9 @@ urlpatterns = patterns(
         name='edit_func_capability'),
     url(r'^delete/functional/capability/{}/$'.format(settings.UUID_PATTERN_REGEX), 'delete_func_capability',
         name='delete_func_capability'),
+
+    # Task Orders
+    url(r'^task/orders/$', 'task_orders', name='task_orders'),
+    url(r'^process/task/order/{}/$'.format(settings.UUID_PATTERN_REGEX), 'task_orders', name='edit_task_order'),
+    url(r'^delete/task/order/{}/$'.format(settings.UUID_PATTERN_REGEX), 'delete_task_order', name='delete_task_order'),
 )
