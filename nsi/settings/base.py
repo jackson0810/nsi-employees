@@ -37,6 +37,11 @@ AUTHENTICATION_BACKENDS = ['security.backends.CustomUserAuthBackend', ]
 
 EMAIL_HOST = 'mail.navalsystemsinc.com'
 APPLICATION_EMAIL = 'admin@employees.navalsystemsinc.com'
+ADMINS = (('Admin', 'admin@navalsystemsinc.com'), )
+EMAIL_HOST_USER = APPLICATION_EMAIL
+EMAIL_HOST_PASSWORD = 'XgKfQ@Y2waXEo2CM^IOD'
+SERVER_EMAIL = APPLICATION_EMAIL
+
 
 # Application definition
 INSTALLED_APPS = [
