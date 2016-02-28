@@ -36,7 +36,7 @@ AUTH_USER_MODEL = 'security.CustomUser'
 AUTHENTICATION_BACKENDS = ['security.backends.CustomUserAuthBackend', ]
 
 EMAIL_HOST = 'mail.navalsystemsinc.com'
-APPLICATION_EMAIL = 'derrick.jackson73@gmail.com'
+APPLICATION_EMAIL = 'admin@employees.navalsystemsinc.com'
 
 # Application definition
 INSTALLED_APPS = [
