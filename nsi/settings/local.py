@@ -13,7 +13,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 STATIC_ROOT = os.path.dirname(BASE_DIR) + '/static/'
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_ROOT = ''
 MEDIA_URL = '/media/'
 
 DATABASES = {

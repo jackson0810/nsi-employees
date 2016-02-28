@@ -1,7 +1,7 @@
 from .base import *
 
 
-APPLICATION_URL = 'https://employees.navalsystemsinc.com'
+APPLICATION_URL = 'http://employees.navalsystemsinc.com'
 DEBUG = True
 ALLOWED_HOSTS = ['navalsystemsinc.com']
 
@@ -11,7 +11,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 STATIC_ROOT = os.path.dirname(BASE_DIR) + '/public/static/'
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, '/public/media/')
+MEDIA_ROOT = ''
 MEDIA_URL = '/media/'
 
 DATABASES = {

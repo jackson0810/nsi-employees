@@ -130,10 +130,6 @@ def task_orders(request, task_uuid=None):
             item.updated_by = request.user
             item.save()
 
-            # move the document to shared/static/documents
-            shutil.move('{}{}'.format(settings.MEDIA_ROOT, item.document), '{}/shared/static/documents/'.format(
-                settings.SITE_ROOT, settings.STATIC_ROOT,))
-
             messages.success(request, 'The task order was saved successfully.')
             return redirect('internal:task_orders')
         else:

@@ -32,7 +32,7 @@ class FunctionalCapability(CommonFields):
 class TaskOrder(CommonFields):
     task_uuid = models.CharField(max_length=36, default=make_uuid, db_index=True)
     task_number = models.CharField(max_length=100)
-    document = models.FileField(upload_to='documents')
+    document = models.FileField(upload_to='{}/shared/static/documents'.format(settings.SITE_ROOT))
 
     class Meta:
         ordering = ['task_number']
