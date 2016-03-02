@@ -43,10 +43,9 @@
   /* 4. Content Below wrapper */
 }
 
-.push {
-    min-height: 100px;
-}
+
 #footer {
+    margin-top: 250px;
     min-height: 100px;
 }
 
