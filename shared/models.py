@@ -78,8 +78,7 @@ class ImageItem(CommonFields):
 
 class ContactItem(models.Model):
     contact_uuid = models.CharField(max_length=36, default=make_uuid, db_index=True)
-    first_name = models.CharField(max_length=100, verbose_name='First Name')
-    last_name = models.CharField(max_length=100, verbose_name='Last Name')
+    name = models.CharField(max_length=100, verbose_name='Name')
     email = models.EmailField(max_length=250, db_index=True)
     message = models.TextField(blank=True, null=True)
     category = models.CharField(max_length=30)

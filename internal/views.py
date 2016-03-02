@@ -168,7 +168,6 @@ def featured_images(request, image_uuid=None):
             messages.success(request, 'The featured image was saved successfully.')
             return redirect('internal:featured_images')
         else:
-            print(form.errors)
             messages.error(request, settings.GENERIC_ERROR)
     else:
         form = ImageItemForm(instance=image_item)
