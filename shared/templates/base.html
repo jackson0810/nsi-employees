@@ -68,8 +68,8 @@
                                     <ul class="nav navbar-right" role="navigation" id="main-menu" style="position:relative">
                                         <li><a href="">Forms</a></li>
                                         {% if request.user.account_type == 1 %}
+                                            <li><a href="{% url 'internal:featured_images' %}">Featured Images</a></li>
                                             <li><a href="{% url 'internal:news_items' %}">News Items</a></li>
-
                                             <li class="dropdown">
                                                 <a href="" class="dropdown-toggle" id="contract-drop" data-toggle="dropdown">SeaPort-e</a>
 

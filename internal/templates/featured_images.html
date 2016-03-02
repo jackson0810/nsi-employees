@@ -23,13 +23,9 @@
                 "order":[[0,'asc']],   //identify the column to sort by default
                 "processing": true,    //when waiting for the data to load, show overlay
                 "serverSide": false,   //where the table is generated
-                "columnDefs":[
-                    {"orderable": false, "targets": []}, // columns to exempt when ordering
-                    {"searchable": false, "targets": []} // columns to exempt when searching
-                ],
                 "language": {
-                  "emptyTable": "There are no news items.", // message that appears if the table is empty when the pg loads
-                  "zeroRecords": "No matching news items.", // message that appears after you search if there are no matches
+                  "emptyTable": "There are no image items.", // message that appears if the table is empty when the pg loads
+                  "zeroRecords": "No matching image items.", // message that appears after you search if there are no matches
                   "search": ""  // changes label of search box
                 }
             } );
@@ -41,14 +37,14 @@
 {% endblock %}
 
 
-{% block title %}News Items{% endblock %}
+{% block title %}Featured Images{% endblock %}
 {% block content_highlight %}
     <!-- ======== @Region: #highlighted ======== -->
     <div id="highlighted">
         <div class="container">
             <div class="header">
                 <h2 class="page-title">
-                    <span>News Items</span>
+                    <span>Featured Images</span>
                 </h2>
             </div>
         </div>
@@ -62,38 +58,41 @@
                     <caption style="display: none"></caption>
                     <thead>
                         <tr>
+                            <th scope="col">Image</th>
                             <th scope="col">Title</th>
                             <th scope="col">Featured</th>
-                            <th scope="col">Year</th>
                             <th scope="col">Active</th>
                             <th scope="col">&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
-                    {% for news_item in news_items %}
+                    {% for featured_image in featured_image_items %}
                         <tr>
+                            <td width="25%">
+                                <a href="{% static 'img/slides/' %}{{ featured_image.get_image_name }}" target="_blank">
+                                <img class="media" src="{% static 'img/slides/' %}{{ featured_image.get_image_name }}" /></a>
+                            </td>
                             <td>
-                                <a href="{% url 'internal:edit_news_items' news_item.news_uuid %}">{{ news_item.title }}</a>
+                                <a href="{% url 'internal:edit_featured_image' featured_image.image_uuid %}">{{ featured_image.title }}</a>
                                 <small class="media-body">
                                     <ul class="list-inline meta text-muted">
                                       <li>
                                           <i class="glyphicon glyphicon-calendar"></i>
                                           <span class="visible-md-inline visible-lg-inline">Date:</span>
-                                          {{ news_item.dt_updated|date:"n/d/Y" }}
+                                          {{ featured_image.dt_updated|date:"n/d/Y" }}
                                       </li>
                                       <li>
                                           <i class="glyphicon glyphicon-user"></i>
                                           <span class="visible-md-inline visible-lg-inline">By</span>
-                                          <a href="{% url 'security:edit_team_member' news_item.updated_by.user_uuid %}">
-                                              {{ news_item.updated_by.get_full_name }}</a>
+                                          <a href="{% url 'security:edit_team_member' featured_image.updated_by.user_uuid %}">
+                                              {{ featured_image.updated_by.get_full_name }}</a>
                                       </li>
                                     </ul>
                                 </small>
                             </td>
-                            <td>{{ news_item.featured|yesno|title }}</td>
-                            <td>{{ news_item.dt_updated|date:"Y" }}</td>
-                            <td>{{ news_item.is_active|yesno|title }}</td>
-                            <td><a href="{% url 'internal:delete_news_item' news_item.news_uuid %}" title="Delete news item."><i class="fa fa-remove"></i> </a> </td>
+                            <td>{{ featured_image.featured|yesno|title }}</td>
+                            <td>{{ featured_image.is_active|yesno|title }}</td>
+                            <td><a href="{% url 'internal:delete_featured_image' featured_image.image_uuid %}" title="Delete featured image."><i class="fa fa-remove"></i> </a> </td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -103,9 +102,9 @@
                 <div class="inner">
                     <div class="block">
                         <h3 class="block-title sub-title">
-                            <span>{% if news_uuid %}Edit{% else %}Add{% endif %} a News Item</span>
+                            <span>{% if image_uuid %}Edit{% else %}Add{% endif %} a Featured Image</span>
                         </h3>
-                        <form action="" method="POST">
+                        <form action="" method="POST" enctype="multipart/form-data">
                             <div class="form-group{% if form.title.errors  %} has-error{% endif %}">
                                 {% if form.title.errors %}
                                     <label class="control-label" for="{{ form.title.auto_id }}">
@@ -121,34 +120,39 @@
                                     </label><br>
                                 {% endif %}
                                 {{ form.text|htmlattributes:"class: form-control, placeholder:Details" }}
+                                <script>
+
+                                </script>
                             </div>
-                            <div class="form-group{% if form.featured.errors  %} has-error{% endif %}">
+                            <div class="form-group{% if form.image.errors  %} has-error{% endif %}">
+                                {% if form.image.errors %}
+                                    <label class="control-label" for="{{ form.image.auto_id }}">
+                                        <i class="fa fa-exclamation-triangle"></i> Image is required.
+                                    </label><br>
+                                {% endif %}
+                                {{ form.image }}
+                            </div>
+                            <div class="form-group">
                                 <fieldset>
                                     <div class="controls">
-                                        <label>Featured?</label>
+                                        <label>Featured</label>
                                         {{ form.featured }}
-                                        <small>If selected this item will appear in "Latest News" banner on the home page.</small>
                                     </div>
                                 </fieldset>
                             </div>
-                            <div class="form-group{% if form.is_active.errors  %} has-error{% endif %}">
+                            <div class="form-group">
                                 <fieldset>
                                     <div class="controls">
                                         <label>Active</label>
                                         {{ form.is_active }}
-                                        {% if form.is_active.errors %}
-                                            <label class="control-label" for="{{ form.is_active.auto_id }}">
-                                                <i class="fa fa-exclamation-triangle"></i> Account status is required.
-                                            </label><br>
-                                        {% endif %}
                                     </div>
                                 </fieldset>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Save</button>
-                                <a href="{% url 'internal:news_items' %}">Cancel</a>
+                                <a href="{% url 'internal:featured_images' %}">Cancel</a>
                             </div>
-                            <input type="hidden" name="news_uuid" value="{{ news_uuid }}"/>
+                            <input type="hidden" name="image_uuid" value="{{ image_uuid }}"/>
                             {% csrf_token %}
                         </form>
                     </div>

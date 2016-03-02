@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.conf import settings
 
-from internal.forms import NewsItemForm, FunctionalCapabilityForm, TaskOrderForm
+from internal.forms import NewsItemForm, FunctionalCapabilityForm, TaskOrderForm, ImageItemForm
 from shared.models import NewsItem, FunctionalCapability, TaskOrder, ImageItem
 
 
@@ -29,7 +29,6 @@ def news_items(request, news_uuid=None):
 
         if form.is_valid():
             item = form.save(commit=False)
-            item.created_by = request.user
             item.updated_by = request.user
             item.save()
 
@@ -74,7 +73,6 @@ def functional_capabilities(request, capability_uuid=None):
 
         if form.is_valid():
             item = form.save(commit=False)
-            item.created_by = request.user
             item.updated_by = request.user
             item.save()
 
@@ -103,12 +101,6 @@ def delete_func_capability(request, capability_uuid):
     return redirect('internal:functional_capabilities')
 
 
-def handle_uploaded_file(f):
-    with open('{}/documents'.format(settings.STATIC_ROOT), 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
-
-
 def task_orders(request, task_uuid=None):
     items = TaskOrder.objects.all()
     task_order_item = None
@@ -126,7 +118,6 @@ def task_orders(request, task_uuid=None):
 
         if form.is_valid():
             item = form.save(commit=False)
-            item.created_by = request.user
             item.updated_by = request.user
             item.save()
 
@@ -152,3 +143,49 @@ def delete_task_order(request, task_uuid):
         messages.error(request, 'An error occurred deleting the selected task order.  Please try again.')
 
     return redirect('internal:task_orders')
+
+
+def featured_images(request, image_uuid=None):
+    items = ImageItem.objects.all()
+    image_item = None
+
+    if image_uuid:
+        try:
+            image_item = items.get(image_uuid=image_uuid)
+        except ImageItem.DoesNotExist:
+            messages.error(request, 'The featured image selected to be edited no longer exists.')
+
+            return redirect('internal:featured_images')
+
+    if request.method == 'POST':
+        form = ImageItemForm(request.POST, request.FILES, instance=image_item)
+
+        if form.is_valid():
+            item = form.save(commit=False)
+            item.updated_by = request.user
+            item.save()
+
+            messages.success(request, 'The featured image was saved successfully.')
+            return redirect('internal:featured_images')
+        else:
+            print(form.errors)
+            messages.error(request, settings.GENERIC_ERROR)
+    else:
+        form = ImageItemForm(instance=image_item)
+
+    return render(request, 'featured_images.html', {'form': form, 'featured_image_items': items,
+                                                    'image_uuid': image_uuid})
+
+
+def delete_featured_image(request, image_uuid):
+    try:
+        image_item = ImageItem.objects.get(image_uuid=image_uuid)
+        image_item.delete()
+
+        messages.success(request, 'The featured image was deleted')
+    except TaskOrder.DoesNotExist:
+        messages.error(request, 'The featured image selected to be deleted no longer exists.')
+    except Exception as e:
+        messages.error(request, 'An error occurred deleting the selected featured image.  Please try again.')
+
+    return redirect('internal:featured_images')

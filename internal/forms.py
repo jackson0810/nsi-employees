@@ -39,3 +39,18 @@ class TaskOrderForm(ModelForm):
     class Meta:
         model = TaskOrder
         fields = ['task_number', 'document', 'is_active']
+
+
+class ImageItemForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+
+        super(ImageItemForm, self).__init__(*args, **kwargs)
+
+        bool_choices = ((True, 'Yes'), (False, 'No'))
+
+        self.fields['is_active'] = forms.ChoiceField(choices=bool_choices, widget=RadioSelectInline, initial=True)
+        self.fields['featured'] = forms.ChoiceField(choices=bool_choices, widget=RadioSelectInline, initial=True)
+
+    class Meta:
+        model = ImageItem
+        fields = ['title', 'text', 'image', 'is_active', 'featured']

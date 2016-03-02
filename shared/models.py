@@ -1,3 +1,5 @@
+from sorl.thumbnail import ImageField, get_thumbnail
+
 from django.conf import settings
 from django.db import models
 
@@ -8,12 +10,10 @@ from shared.utilities import make_uuid
 
 class CommonFields(models.Model):
     is_active = models.BooleanField(default=True)
-    dt_created = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='created_by')
     dt_updated = models.DateTimeField(auto_now=True)
-    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='updated_by')
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL)
 
-    class Mets:
+    class Meta:
         abstract = True
 
 
@@ -40,6 +40,10 @@ class TaskOrder(CommonFields):
     def __str__(self):
         return self.task_number
 
+    @property
+    def get_document_name(self):
+        return self.document.split('/')[-1]
+
 
 class NewsItem(CommonFields):
     news_uuid = models.CharField(max_length=36, default=make_uuid, db_index=True)
@@ -56,10 +60,18 @@ class NewsItem(CommonFields):
 
 class ImageItem(CommonFields):
     image_uuid = models.CharField(max_length=36, default=make_uuid, db_index=True)
-    featured = models.BooleanField(default=False, verbose_name='is this a featured image')
     title = models.CharField(max_length=250, verbose_name='title of image item')
-    text = models.TextField(verbose_name='image detail')
-    image = models.ImageField(upload_to='originals', null=True, blank=True)
+    text = models.TextField(verbose_name='image detail', blank=True, null=True)
+    featured = models.BooleanField(default=True, verbose_name='is this a featured image')
+    image = models.ImageField(upload_to='{}/shared/static/img/slides'.format(settings.SITE_ROOT))
 
     def __str__(self):
         return self.title
+
+    @property
+    def get_image_name(self):
+        return self.image.url.split('/')[-1]
+
+    def get_thumbnail(self):
+        return get_thumbnail(self.image, '555x350', quality=99)
+

@@ -6,6 +6,13 @@ urlpatterns = patterns(
     'internal.views',
     url(r'^$', 'home', name='home'),
 
+    # Featured Images
+    url(r'^featured/images/$', 'featured_images', name='featured_images'),
+    url(r'^process/featured/image/{}/$'.format(settings.UUID_PATTERN_REGEX), 'featured_images',
+        name='edit_featured_image'),
+    url(r'^delete/featured/image/{}/$'.format(settings.UUID_PATTERN_REGEX), 'delete_featured_image',
+        name='delete_featured_image'),
+
     # News Items
     url(r'^news/items/$', 'news_items', name='news_items'),
     url(r'^process/news/item/{}/$'.format(settings.UUID_PATTERN_REGEX), 'news_items', name='edit_news_items'),
