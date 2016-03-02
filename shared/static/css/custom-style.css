@@ -42,13 +42,14 @@
 #content-below {
   /* 4. Content Below wrapper */
 }
+
+.push {
+    min-height: 100px;
+}
 #footer {
     min-height: 100px;
-    /*position:fixed;*/
-    /*left:0px;*/
-    /*bottom:0px;*/
-    /*width:100%;*/
 }
+
 #footer .inner {
   padding: 0px 0;
 }

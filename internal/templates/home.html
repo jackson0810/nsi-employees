@@ -3,21 +3,6 @@
 
 {% block title %}Home{% endblock %}
 {% block content %}
-    {% if latest_news %}
-        <div class="breakingNews" id="latest_news">
-            <div class="bn-title"><h2>Latest News</h2><span></span></div>
-            <ul>
-                {% for news_item in latest_news %}
-                    <li><a href="#"><span>{{ news_item.title }}</span></a></li>
-                {% endfor %}
-            </ul>
-            <div class="bn-navi">
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    {% endif %}
-
     <div id="highlighted">
         <div class="inner">
             <div class="container">
@@ -29,87 +14,17 @@
                             </h2>
                         </div>
                         <p class="home">
-                            Naval Systems, Inc. (NSI), is a Veteran Owned Small Business supporting the Naval Air Systems
-                            Command from locations near Patuxent River, Maryland; Cherry Point, North Carolina;
-                            Jacksonville, Florida; and China Lake, California.
+                            Welcome to the NSI Employee Portal
+
+
+
+
+
                         </p>
-                        <p class="home">
-                            Our main office is located in Lexington Park, Maryland; just minutes from NAS Patuxent River.
-                            NSI has experienced strong growth since our founding and has developed a reputation among
-                            clients for superior quality, cost and schedule performance; providing innovative solutions
-                            to difficult problems; and demonstrating uncompromising devotion to the ultimate customer:
-                            our Navy and Marine Corps warfighters.Content Region With No Sidebars
-                        </p>
-                        <p class="home">
-                            NSI's outstanding value to our customers results from a great depth of knowledge in
-                            engineering, logistics, and management disciplines by the leadership team and key employees,
-                            a flat management structure with an extremely efficient business model, and many years of
-                            cumulative hands-on experience in Naval Aviation operations and depot level support.
-                            The NSI culture has been built upon the core values of Quality, Integrity, and Victory.
-                        </p>
-                    </div>
-                    <div class="col-sm-6">
-                        <div id="carousel-front" class="carousel slide carousel-featured" data-ride="carousel">
-                            <div class="carousel-inner">
-                                {% for featured_image in featured_images %}
-                                    <div class="item{% if forloop.first %}active{% endif %}">
-                                        <div class="row">
-                                            <div class="col-sm-12 pull-center animated fadeInUpBig">
-                                                <img src="{% static 'img/slides/uss_harry_truman.jpg' %}"
-                                                     alt="{{ featured_image.title|striptags }}" />
-                                                <h4 class="carousel-caption">
-                                                    {{ featured_image.title }}
-                                                    <small> {{ featured_image.text|safe }} </small>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {% empty %}
-                                    <!--Default if there are no features images-->
-                                    <div class="item active">
-                                        <div class="row">
-                                            <div class="col-sm-12 pull-center animated fadeInUpBig">
-                                                <img src="{% static 'img/slides/uss_harry_truman.jpg' %}"
-                                                     alt="USS Harry S. Truman (CVN 75)" />
-                                                <h4 class="carousel-caption">
-                                                    USS Harry S. Truman (CVN 75)
-                                                    <small>
-                                                    Aircraft carrier USS Harry S. Truman (CVN 75) transits the Arabian
-                                                    Gulf. Harry S. Truman Carrier Strike Group is deployed in support
-                                                    of Operation Inherent Resolve, maritime security operations, and
-                                                    theater security cooperation efforts in the U.S. 5th Fleet area of
-                                                    operations.
-                                                    </small>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                            {% if featured_images %}
-                                <a class="left carousel-control carousel-control-rounded carousel-control-small"
-                                   href="#carousel-front" data-slide="prev">‹</a>
-                                <a class="right carousel-control carousel-control-rounded carousel-control-small"
-                                   href="#carousel-front" data-slide="next">›</a>
-                            {% endif %}
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-{% endblock %}
-{% block extra_scripts %}
-    <script>
-	    $(document).ready( function(){
-            $("#latest_news").breakingNews({
-                effect: "slide-v",
-                autoplay: true,
-                timer: 3000,
-                color: 'darkblue',
-                border: true
-            });
-        });
-    </script>
 {% endblock %}
