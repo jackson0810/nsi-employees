@@ -42,7 +42,7 @@ class TaskOrder(CommonFields):
 
     @property
     def get_document_name(self):
-        return self.document.split('/')[-1]
+        return self.document.url.split('/')[-1]
 
 
 class NewsItem(CommonFields):

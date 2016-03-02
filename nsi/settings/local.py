@@ -16,6 +16,8 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = ''
 MEDIA_URL = '/media/'
 
+IS_PROD = False
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',

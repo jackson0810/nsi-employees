@@ -25,6 +25,9 @@ def login_form(request, template_name='login.html'):
             authentication_error = None
 
             if request.method == 'POST':
+                if request.user.is_authenticated():
+                    return redirect(request.POST.get('next', 'internal:home'))
+
                 form = LoginForm(request.POST)
 
                 email = request.POST['email'].lower()
@@ -55,7 +58,7 @@ def login_form(request, template_name='login.html'):
                             user.dt_last_login = datetime.now()
                             user.save()
 
-                            return redirect('internal:home')
+                            return redirect(request.POST.get('next', 'internal:home'))
                         else:
                             has_error = True
                             messages.error(request, 'You do not have an active account.')

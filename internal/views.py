@@ -121,6 +121,10 @@ def task_orders(request, task_uuid=None):
             item.updated_by = request.user
             item.save()
 
+            if settings.IS_PROD:
+                # copy the document to the public site
+                shutil.copy(item.document.url, '{}/{}'.format(settings.DOCUMENT_PATH, item.get_document_name))
+
             messages.success(request, 'The task order was saved successfully.')
             return redirect('internal:task_orders')
         else:
@@ -164,6 +168,10 @@ def featured_images(request, image_uuid=None):
             item = form.save(commit=False)
             item.updated_by = request.user
             item.save()
+
+            if settings.IS_PROD:
+                # copy the image to the public site
+                shutil.copy(item.image.url, settings.IMAGE_PATH)
 
             messages.success(request, 'The featured image was saved successfully.')
             return redirect('internal:featured_images')

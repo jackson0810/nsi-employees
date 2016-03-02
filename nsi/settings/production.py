@@ -14,6 +14,10 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = ''
 MEDIA_URL = '/media/'
 
+IS_PROD = True
+IMAGE_PATH = '/home/nsishell/navalsystemsinc/nsi/public/static/img/slides'
+DOCUMENT_PATH = '/home/nsishell/navalsystemsinc/nsi/public/static/documents'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
