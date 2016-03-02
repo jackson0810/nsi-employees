@@ -33,6 +33,6 @@ urlpatterns = patterns(
     # Contact Items
     url(r'^contact/itemss/$', 'contact_items', name='contact_items'),
     url(r'^view/contact/item/{}/$'.format(settings.UUID_PATTERN_REGEX), 'contact_items', name='view_contact_item'),
-    url(r'^delete/contact/item/{}/$'.format(settings.UUID_PATTERN_REGEX), 'delete_task_order',
-        name='delete_task_order'),
+    url(r'^delete/contact/item/{}/$'.format(settings.UUID_PATTERN_REGEX), 'delete_contact_item',
+        name='delete_contact_item'),
 )
