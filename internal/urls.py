@@ -29,4 +29,10 @@ urlpatterns = patterns(
     url(r'^task/orders/$', 'task_orders', name='task_orders'),
     url(r'^process/task/order/{}/$'.format(settings.UUID_PATTERN_REGEX), 'task_orders', name='edit_task_order'),
     url(r'^delete/task/order/{}/$'.format(settings.UUID_PATTERN_REGEX), 'delete_task_order', name='delete_task_order'),
+
+    # Contact Items
+    url(r'^contact/itemss/$', 'contact_items', name='contact_items'),
+    url(r'^view/contact/item/{}/$'.format(settings.UUID_PATTERN_REGEX), 'contact_items', name='view_contact_item'),
+    url(r'^delete/contact/item/{}/$'.format(settings.UUID_PATTERN_REGEX), 'delete_task_order',
+        name='delete_task_order'),
 )

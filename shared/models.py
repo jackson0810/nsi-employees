@@ -75,3 +75,15 @@ class ImageItem(CommonFields):
     def get_thumbnail(self):
         return get_thumbnail(self.image, '555x350', quality=99)
 
+
+class ContactItem(models.Model):
+    contact_uuid = models.CharField(max_length=36, default=make_uuid, db_index=True)
+    first_name = models.CharField(max_length=100, verbose_name='First Name')
+    last_name = models.CharField(max_length=100, verbose_name='Last Name')
+    email = models.EmailField(max_length=250, db_index=True)
+    message = models.TextField(blank=True, null=True)
+    category = models.CharField(max_length=30)
+    dt_updated = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.category

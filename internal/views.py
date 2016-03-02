@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.conf import settings
 
 from internal.forms import NewsItemForm, FunctionalCapabilityForm, TaskOrderForm, ImageItemForm
-from shared.models import NewsItem, FunctionalCapability, TaskOrder, ImageItem
+from shared.models import NewsItem, FunctionalCapability, TaskOrder, ImageItem, ContactItem
 
 
 def home(request):
@@ -183,9 +183,39 @@ def delete_featured_image(request, image_uuid):
         image_item.delete()
 
         messages.success(request, 'The featured image was deleted')
-    except TaskOrder.DoesNotExist:
+    except ImageItem.DoesNotExist:
         messages.error(request, 'The featured image selected to be deleted no longer exists.')
     except Exception as e:
         messages.error(request, 'An error occurred deleting the selected featured image.  Please try again.')
 
     return redirect('internal:featured_images')
+
+
+def contact_items(request, contact_uuid=None):
+    items = ContactItem.objects.all()
+    contact_item = None
+
+    if contact_uuid:
+        try:
+            contact_item = items.get(contact_uuid=contact_uuid)
+        except ImageItem.DoesNotExist:
+            messages.error(request, 'The contact item selected to be edited no longer exists.')
+
+            return redirect('internal:contact_items')
+
+    return render(request, 'contact_items.html', {'contact_items': items, 'contact_uuid': contact_uuid,
+                                                  'contact_item': contact_item})
+
+
+def delete_contact_item(request, contact_uuid):
+    try:
+        contact_item = ContactItem.objects.get(contact_uuid=contact_uuid)
+        contact_item.delete()
+
+        messages.success(request, 'The contact item was deleted')
+    except ContactItem.DoesNotExist:
+        messages.error(request, 'The contact item selected to be deleted no longer exists.')
+    except Exception as e:
+        messages.error(request, 'An error occurred deleting the selected contact item image.  Please try again.')
+
+    return redirect('internal:contact_items')
