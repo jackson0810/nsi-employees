@@ -91,7 +91,7 @@
                                 </small>
                             </td>
                             <td>{{ news_item.featured|yesno|title }}</td>
-                            <td>{{ news_item.dt_updated|date:"Y" }}</td>
+                            <td>{{ news_item.news_year }}</td>
                             <td>{{ news_item.is_active|yesno|title }}</td>
                             <td><a href="{% url 'internal:delete_news_item' news_item.news_uuid %}" title="Delete news item."><i class="fa fa-remove"></i> </a> </td>
                         </tr>
@@ -121,6 +121,14 @@
                                     </label><br>
                                 {% endif %}
                                 {{ form.text|htmlattributes:"class: form-control, placeholder:Details" }}
+                            </div>
+                            <div class="form-group{% if form.news_year.errors  %} has-error{% endif %}">
+                                {% if form.news_year.errors %}
+                                    <label class="control-label" for="{{ form.news_year.auto_id }}">
+                                        <i class="fa fa-exclamation-triangle"></i> Year is required.
+                                    </label><br>
+                                {% endif %}
+                                {{ form.news_year|htmlattributes:"class: form-control" }}
                             </div>
                             <div class="form-group{% if form.featured.errors  %} has-error{% endif %}">
                                 <fieldset>

@@ -8,12 +8,17 @@ from shared.forms import RadioSelectInline
 
 class NewsItemForm(ModelForm):
     bool_choices = ((True, 'Yes'), (False, 'No'))
+    year_choices = [('', 'Select year...'), ]
+
+    for x in range(2012, 2100):
+        year_choices.append((x, x))
 
     is_active = forms.ChoiceField(choices=bool_choices, widget=RadioSelectInline, initial=True)
+    news_year = forms.ChoiceField(choices=year_choices)
 
     class Meta:
         model = NewsItem
-        fields = ['featured', 'title', 'text', 'is_active']
+        fields = ['featured', 'title', 'text', 'is_active', 'news_year']
 
 
 class FunctionalCapabilityForm(ModelForm):

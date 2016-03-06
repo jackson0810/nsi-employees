@@ -50,12 +50,16 @@ class NewsItem(CommonFields):
     featured = models.BooleanField(default=False, verbose_name='is this featured')
     title = models.CharField(max_length=250, verbose_name='title of news item')
     text = models.TextField(verbose_name='news detail')
+    news_year = models.IntegerField()
 
     class Meta:
         ordering = ['title']
 
     def __str__(self):
         return self.title
+
+    def get_item_year(self):
+        return self.dt_updated.year
 
 
 class ImageItem(CommonFields):
