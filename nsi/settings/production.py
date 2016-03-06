@@ -3,7 +3,7 @@ from .base import *
 
 APPLICATION_URL = 'http://employees.navalsystemsinc.com'
 DEBUG = False
-ALLOWED_HOSTS = ['navalsystemsinc.com']
+ALLOWED_HOSTS = ['employees.navalsystemsinc.com']
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['SECRET_KEY']
