@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Internal Server Error{% endblock %}
+
+{% block content_highlight %}
+    <!-- ======== @Region: #highlighted ======== -->
+    <div id="highlighted">
+        <div class="container">
+            <div class="header">
+                <h2 class="page-title">
+                    <span>Internal Server Error</span>
+                </h2>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <!-- ======== @Region: #content ======== -->
+    <div id="content">
+        <div class="container">
+            <!-- About -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block">
+                        <h3>
+                            We're sorry, but an internal server error has occurred. The support team has been notified
+                            of the error and will resolve it as soon as possible.
+                            We apologize for the inconvenience. If you have questions or would like to provide the support team with any additional
+                            information, please email <a href="mailto:admin@navalsystemsinc.com">admin@navalsystemsinc.com</a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

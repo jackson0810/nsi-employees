@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Page Not Found{% endblock %}
+
+{% block content_highlight %}
+    <!-- ======== @Region: #highlighted ======== -->
+    <div id="highlighted">
+        <div class="container">
+            <div class="header">
+                <h2 class="page-title">
+                    <span>Oops... Page Not Found!!!</span>
+                </h2>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <!-- ======== @Region: #content ======== -->
+    <div id="content">
+        <div class="container">
+            <!-- About -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block">
+                        <h3 class="block-title sub-title">
+                            We can't seem to find the page you are looking for. Please try one of the links above.
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
