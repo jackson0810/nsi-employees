@@ -2,7 +2,7 @@ from .base import *
 
 
 APPLICATION_URL = 'http://employees.navalsystemsinc.com'
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['navalsystemsinc.com']
 
 # SECURITY WARNING: keep the secret key used in production secret!
