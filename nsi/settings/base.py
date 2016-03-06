@@ -36,10 +36,10 @@ AUTH_USER_MODEL = 'security.CustomUser'
 AUTHENTICATION_BACKENDS = ['security.backends.CustomUserAuthBackend', ]
 
 EMAIL_HOST = 'mail.navalsystemsinc.com'
-APPLICATION_EMAIL = 'admin@employees.navalsystemsinc.com'
+APPLICATION_EMAIL = 'admin@navalsystemsinc.com'
 ADMINS = (('Admin', 'admin@navalsystemsinc.com'), )
 EMAIL_HOST_USER = APPLICATION_EMAIL
-EMAIL_HOST_PASSWORD = 'XgKfQ@Y2waXEo2CM^IOD'
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 SERVER_EMAIL = APPLICATION_EMAIL
 
 
