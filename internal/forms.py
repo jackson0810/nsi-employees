@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm
 
 
-from shared.models import NewsItem, FunctionalCapability, ImageItem, TaskOrder
+from shared.models import NewsItem, FunctionalCapability, ImageItem, TaskOrder, FormData
 from shared.forms import RadioSelectInline
 
 
@@ -59,3 +59,17 @@ class ImageItemForm(ModelForm):
     class Meta:
         model = ImageItem
         fields = ['title', 'text', 'image', 'is_active', 'featured']
+
+
+class FormDataForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+
+        super(FormDataForm, self).__init__(*args, **kwargs)
+
+        bool_choices = ((True, 'Yes'), (False, 'No'))
+
+        self.fields['is_active'] = forms.ChoiceField(choices=bool_choices, widget=RadioSelectInline, initial=True)
+
+    class Meta:
+        model = FormData
+        fields = ['title', 'text', 'document', 'is_active']

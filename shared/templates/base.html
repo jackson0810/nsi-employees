@@ -66,8 +66,16 @@
                                 <div class="collapse navbar-collapse">
                                     <br/>
                                     <ul class="nav navbar-right" role="navigation" id="main-menu" style="position:relative">
-                                        <li><a href="">Forms</a></li>
                                         {% if request.user.account_type == 1 %}
+                                            <li class="dropdown">
+                                                <a href="" class="dropdown-toggle" id="forms-drop" data-toggle="dropdown">Forms</a>
+
+                                                <!-- Dropdown Menu -->
+                                                <ul class="dropdown-menu" role="menu" aria-labelledby="forms-drop">
+                                                    <li role="menuitem"><a href="{% url 'internal:employee_forms' %}" tabindex="-1">Employee Forms</a></li>
+                                                    <li role="menuitem"><a href="{% url 'internal:forms_items' %}" tabindex="-1">Manage Forms</a></li>
+                                                </ul>
+                                            </li>
                                             <li><a href="{% url 'internal:contact_items' %}">Contact Items</a></li>
                                             <li><a href="{% url 'internal:featured_images' %}">Featured Images</a></li>
                                             <li><a href="{% url 'internal:news_items' %}">News Items</a></li>
@@ -81,6 +89,8 @@
                                                 </ul>
                                             </li>
                                             <li><a href="{% url 'security:team_members' %}">Team Members</a></li>
+                                        {% else %}
+                                            <li><a href="{% url 'internal:employee_forms' %}">Employee Forms</a></li>
                                         {% endif %}
                                         <li><a href="{% url 'security:logout' %}">Logout</a></li>
                                     </ul>

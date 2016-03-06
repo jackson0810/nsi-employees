@@ -90,3 +90,20 @@ class ContactItem(models.Model):
 
     def __str__(self):
         return self.category
+
+
+class FormData(CommonFields):
+    form_uuid = models.CharField(max_length=36, default=make_uuid, db_index=True)
+    title = models.CharField(max_length=250, verbose_name='title of form')
+    text = models.TextField(verbose_name='form detail', blank=True, null=True)
+    document = models.FileField(upload_to='{}/shared/static/forms'.format(settings.SITE_ROOT))
+
+    class Meta:
+        ordering = ['title']
+
+    def __str__(self):
+        return self.title
+
+    @property
+    def get_document_name(self):
+        return self.document.url.split('/')[-1]

@@ -35,4 +35,10 @@ urlpatterns = patterns(
     url(r'^view/contact/item/{}/$'.format(settings.UUID_PATTERN_REGEX), 'contact_items', name='view_contact_item'),
     url(r'^delete/contact/item/{}/$'.format(settings.UUID_PATTERN_REGEX), 'delete_contact_item',
         name='delete_contact_item'),
+
+    # Form Items
+    url(r'^forms/$', 'employee_forms', name='employee_forms'),
+    url(r'^form/items/$', 'forms_items', name='forms_items'),
+    url(r'^process/forms/item/{}/$'.format(settings.UUID_PATTERN_REGEX), 'forms_items', name='edit_forms_items'),
+    url(r'^delete/forms/item/{}/$'.format(settings.UUID_PATTERN_REGEX), 'delete_forms_item', name='delete_forms_item'),
 )

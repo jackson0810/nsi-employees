@@ -4,8 +4,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.conf import settings
 
-from internal.forms import NewsItemForm, FunctionalCapabilityForm, TaskOrderForm, ImageItemForm
-from shared.models import NewsItem, FunctionalCapability, TaskOrder, ImageItem, ContactItem
+from internal.forms import NewsItemForm, FunctionalCapabilityForm, TaskOrderForm, ImageItemForm, FormDataForm
+from shared.models import NewsItem, FunctionalCapability, TaskOrder, ImageItem, ContactItem, FormData
 
 
 def home(request):
@@ -226,3 +226,58 @@ def delete_contact_item(request, contact_uuid):
         messages.error(request, 'An error occurred deleting the selected contact item image.  Please try again.')
 
     return redirect('internal:contact_items')
+
+
+def forms_items(request, form_uuid=None):
+    items = FormData.objects.filter(is_active=True)
+    form_item = None
+
+    if form_uuid:
+        try:
+            form_item = items.get(form_uuid=form_uuid)
+        except FormData.DoesNotExist:
+            messages.error(request, 'The form selected to be edited no longer exists.')
+
+            return redirect('internal:forms_items')
+
+    if request.method == 'POST':
+        form = FormDataForm(request.POST, request.FILES, instance=form_item)
+
+        if form.is_valid():
+            item = form.save(commit=False)
+            item.updated_by = request.user
+            item.save()
+
+            if settings.IS_PROD:
+                # copy the document to the public site
+                shutil.copy(item.document.url, '{}/{}'.format(settings.FORM_PATH, item.get_document_name))
+
+            messages.success(request, 'The form order was saved successfully.')
+            return redirect('internal:form_items')
+        else:
+            messages.error(request, settings.GENERIC_ERROR)
+    else:
+        form = FormDataForm(instance=form_item)
+
+    return render(request, 'manage_forms.html', {'form': form, 'form_items': items, 'form_uuid': form_uuid})
+
+
+def delete_forms_item(request, form_uuid):
+    try:
+        form_item = FormData.objects.get(form_uuid=form_uuid)
+        form_item.delete()
+
+        messages.success(request, 'The form was deleted')
+    except FormData.DoesNotExist:
+        messages.error(request, 'The form selected to be deleted no longer exists.')
+    except Exception as e:
+        messages.error(request, 'An error occurred deleting the selected form.  Please try again.')
+
+    return redirect('internal:form_items')
+
+
+def employee_forms(request):
+    form_items = FormData.objects.filter(is_active=True)
+
+    return render(request, 'forms.html', {'form_items': form_items})
+
