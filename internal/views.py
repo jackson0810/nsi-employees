@@ -253,7 +253,7 @@ def forms_items(request, form_uuid=None):
                 shutil.copy(item.document.url, '{}/{}'.format(settings.FORM_PATH, item.get_document_name))
 
             messages.success(request, 'The form order was saved successfully.')
-            return redirect('internal:form_items')
+            return redirect('internal:forms_items')
         else:
             messages.error(request, settings.GENERIC_ERROR)
     else:
