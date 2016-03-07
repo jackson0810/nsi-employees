@@ -1,4 +1,4 @@
-django==1.8.6
+django==1.8.11
 django-suit==0.3a3
 django-datatables-view==1.13.0
 django_debug_toolbar==1.4.0

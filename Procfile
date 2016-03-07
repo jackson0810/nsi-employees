@@ -1,1 +1,0 @@
-web: gunicorn nsi.wsgi --log-file -

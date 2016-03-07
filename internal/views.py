@@ -273,7 +273,7 @@ def delete_forms_item(request, form_uuid):
     except Exception as e:
         messages.error(request, 'An error occurred deleting the selected form.  Please try again.')
 
-    return redirect('internal:form_items')
+    return redirect('internal:forms_items')
 
 
 def employee_forms(request):
