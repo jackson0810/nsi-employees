@@ -24,6 +24,9 @@ def login_form(request, template_name='login.html'):
             has_error = False
             authentication_error = None
 
+            if request.user.is_authenticated():
+                return redirect('home')
+
             if request.method == 'POST':
                 if request.user.is_authenticated():
                     return redirect(request.POST.get('next', 'internal:home'))
