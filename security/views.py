@@ -25,7 +25,7 @@ def login_form(request, template_name='login.html'):
             authentication_error = None
 
             if request.user.is_authenticated():
-                return redirect('home')
+                return redirect('internal:home')
 
             if request.method == 'POST':
                 if request.user.is_authenticated():
