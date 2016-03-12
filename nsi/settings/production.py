@@ -7,10 +7,10 @@ ALLOWED_HOSTS = ['employees.navalsystemsinc.com']
 
 SECRET_KEY = os.environ['SECRET_KEY']
 
-MEDIA_ROOT = os.path.dirname(BASE_DIR) + '/media/'
-MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.dirname(BASE_DIR) + '/public/static/'
+STATIC_URL = '/static/'
 
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.dirname(BASE_DIR) + '/media/'
 MEDIA_URL = '/media/'
 
 IS_PROD = True
@@ -33,6 +33,7 @@ DATABASES = {
 STRONGHOLD_DEFAULTS = False
 STRONGHOLD_PUBLIC_URLS = (
     r'^%s.+$' % STATIC_URL,
+    r'^%s.+$' % MEDIA_URL,
     r'^/__debug__/.+$',  # needed for django debug toolbar
     r'^/security/(.+)?$',
 )
