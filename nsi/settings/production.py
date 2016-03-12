@@ -7,10 +7,10 @@ ALLOWED_HOSTS = ['employees.navalsystemsinc.com']
 
 SECRET_KEY = os.environ['SECRET_KEY']
 
-STATIC_ROOT = '../{}/public/static/'.format(os.path.dirname(BASE_DIR))
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public/static'))
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = '../{}/media/'.format(os.path.dirname(BASE_DIR))
+MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public/media'))
 MEDIA_URL = '/media/'
 
 IS_PROD = True
