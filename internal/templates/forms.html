@@ -70,7 +70,7 @@
                     {% for item in form_items %}
                         <tr>
                             <td width="50%">
-                                <a href="{% static 'forms/' %}{{ item.get_document_name }}" target="_blank">{{ item.title }}</a>
+                                <a href="/media/forms/{{ item.get_document_name }}" target="_blank">{{ item.title }}</a>
                             </td>
                             <td>
                                {{ item.text|safe }}
