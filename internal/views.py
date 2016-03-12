@@ -1,3 +1,4 @@
+import os
 import shutil
 
 from django.shortcuts import render, redirect
@@ -265,12 +266,19 @@ def forms_items(request, form_uuid=None):
 def delete_forms_item(request, form_uuid):
     try:
         form_item = FormData.objects.get(form_uuid=form_uuid)
+
+        # remove the uploaded file.
+        form_item.document.delete()
+
         form_item.delete()
 
         messages.success(request, 'The form was deleted')
     except FormData.DoesNotExist:
         messages.error(request, 'The form selected to be deleted no longer exists.')
+    except OSError:
+        raise
     except Exception as e:
+        raise
         messages.error(request, 'An error occurred deleting the selected form.  Please try again.')
 
     return redirect('internal:forms_items')

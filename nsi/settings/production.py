@@ -7,8 +7,8 @@ ALLOWED_HOSTS = ['employees.navalsystemsinc.com']
 
 SECRET_KEY = os.environ['SECRET_KEY']
 
-STATIC_ROOT = os.path.dirname(BASE_DIR) + '/public/static/'
-STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.dirname(BASE_DIR) + '/media/'
+MEDIA_URL = '/media/'
 
 MEDIA_ROOT = ''
 MEDIA_URL = '/media/'
