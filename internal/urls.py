@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, url
-from django.conf.urls.static import static
 from django.conf import settings
 
 
@@ -42,4 +41,4 @@ urlpatterns = patterns(
     url(r'^form/items/$', 'forms_items', name='forms_items'),
     url(r'^process/forms/item/{}/$'.format(settings.UUID_PATTERN_REGEX), 'forms_items', name='edit_forms_items'),
     url(r'^delete/forms/item/{}/$'.format(settings.UUID_PATTERN_REGEX), 'delete_forms_item', name='delete_forms_item'),
-) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+)

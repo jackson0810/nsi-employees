@@ -10,7 +10,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public/static'))
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public/media'))
+MEDIA_ROOT = ''
 MEDIA_URL = '/media/'
 
 IS_PROD = True
@@ -33,7 +33,6 @@ DATABASES = {
 STRONGHOLD_DEFAULTS = False
 STRONGHOLD_PUBLIC_URLS = (
     r'^%s.+$' % STATIC_URL,
-    r'^%s.+$' % MEDIA_URL,
     r'^/__debug__/.+$',  # needed for django debug toolbar
     r'^/security/(.+)?$',
 )
