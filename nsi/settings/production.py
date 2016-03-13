@@ -15,7 +15,7 @@ MEDIA_URL = '/media/'
 
 IS_PROD = True
 IMAGE_PATH = '/home/nsishell/navalsystemsinc/nsi/public/static/img/slides'
-DOCUMENT_PATH = '/home/nsishell/navalsystemsinc/nsi/public/static/documents'
+DOCUMENT_PATH = '/home/nsishell/navalsystemsinc/nsi/shared/static/documents'
 FORM_PATH = '/home/nsishell/employees.navalsystemsinc.com/nsi-employees/public/static/forms'
 
 DATABASES = {

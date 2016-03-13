@@ -89,7 +89,7 @@
                                 </small>
                             </td>
                             <td>{{ func_item.is_active|yesno|title }}</td>
-                            <td><a href="{% url 'internal:delete_func_capability' func_item.capability_uuid %}" title="Delete functional capability."><i class="fa fa-remove"></i> </a> </td>
+                            <td><a href="{% url 'internal:delete_func_capability' func_item.capability_uuid %}" title="Delete functional capability."><i class="fa fa-trash"></i> </a> </td>
                         </tr>
                     {% endfor %}
                     </tbody>

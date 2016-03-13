@@ -4,10 +4,10 @@ import shutil
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.conf import settings
-from django.core.management import call_command
 
 from internal.forms import NewsItemForm, FunctionalCapabilityForm, TaskOrderForm, ImageItemForm, FormDataForm
 from shared.models import NewsItem, FunctionalCapability, TaskOrder, ImageItem, ContactItem, FormData
+from shared.utilities import collect_static
 
 
 def home(request):
@@ -250,9 +250,8 @@ def forms_items(request, form_uuid=None):
             item.updated_by = request.user
             item.save()
 
-            call_command('collectstatic', verbosity=0, interactive=False)
-
-            messages.success(request, 'The form order was saved successfully.')
+            collect_static()
+            messages.success(request, 'The form was saved successfully.')
             return redirect('internal:forms_items')
         else:
             messages.error(request, settings.GENERIC_ERROR)

@@ -92,7 +92,7 @@
                             </td>
                             <td>{{ featured_image.featured|yesno|title }}</td>
                             <td>{{ featured_image.is_active|yesno|title }}</td>
-                            <td><a href="{% url 'internal:delete_featured_image' featured_image.image_uuid %}" title="Delete featured image."><i class="fa fa-remove"></i> </a> </td>
+                            <td><a href="{% url 'internal:delete_featured_image' featured_image.image_uuid %}" title="Delete featured image."><i class="fa fa-trash"></i> </a> </td>
                         </tr>
                     {% endfor %}
                     </tbody>

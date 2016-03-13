@@ -93,7 +93,7 @@
                                 <a href="{% static 'documents/' %}{{ task_order.get_document_name }}" target="_blank">{{ task_order.get_document_name }}</a>
                             </td>
                             <td>{{ task_order.is_active|yesno|title }}</td>
-                            <td><a href="{% url 'internal:delete_task_order' task_order.task_uuid %}" title="Delete task order."><i class="fa fa-remove"></i> </a> </td>
+                            <td><a href="{% url 'internal:delete_task_order' task_order.task_uuid %}" title="Delete task order."><i class="fa fa-trash"></i> </a> </td>
                         </tr>
                     {% endfor %}
                     </tbody>

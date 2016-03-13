@@ -78,7 +78,7 @@
                             <td>{{ contact_item.category }}</td>
                             <td>{{ contact_item.message }}</td>
                             <td>{{ contact_item.dt_updated|date:"n/d/Y" }}</td>
-                            <td><a href="{% url 'internal:delete_contact_item' contact_item.contact_uuid %}" title="Delete contact item."><i class="fa fa-remove"></i> </a> </td>
+                            <td><a href="{% url 'internal:delete_contact_item' contact_item.contact_uuid %}" title="Delete contact item."><i class="fa fa-trash"></i> </a> </td>
                         </tr>
                     {% endfor %}
                     </tbody>

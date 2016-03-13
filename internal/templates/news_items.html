@@ -93,7 +93,7 @@
                             <td>{{ news_item.featured|yesno|title }}</td>
                             <td>{{ news_item.news_year }}</td>
                             <td>{{ news_item.is_active|yesno|title }}</td>
-                            <td><a href="{% url 'internal:delete_news_item' news_item.news_uuid %}" title="Delete news item."><i class="fa fa-remove"></i> </a> </td>
+                            <td><a href="{% url 'internal:delete_news_item' news_item.news_uuid %}" title="Delete news item."><i class="fa fa-trash"></i> </a> </td>
                         </tr>
                     {% endfor %}
                     </tbody>

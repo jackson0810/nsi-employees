@@ -93,7 +93,7 @@
                                 <a href="{% static 'forms/' %}{{ item.get_document_name }}" target="_blank">{{ item.get_document_name }}</a>
                             </td>
                             <td>{{ item.is_active|yesno|title }}</td>
-                            <td><a href="{% url 'internal:delete_forms_item' item.form_uuid %}" title="Delete form."><i class="fa fa-remove"></i> </a> </td>
+                            <td><a href="{% url 'internal:delete_forms_item' item.form_uuid %}" title="Delete form."><i class="fa fa-trash"></i> </a> </td>
                         </tr>
                     {% endfor %}
                     </tbody>

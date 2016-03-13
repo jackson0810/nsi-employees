@@ -4,10 +4,12 @@ import re
 import uuid
 
 from django.conf import settings
+from django.core.management import call_command
 
 
 def make_uuid():
     return str(uuid.uuid4())
+
 
 # Random Password Generator
 def random_password_generator(size=10, chars=string.ascii_uppercase + string.ascii_lowercase + string.digits):
@@ -37,3 +39,8 @@ def random_password_generator(size=10, chars=string.ascii_uppercase + string.asc
         raise Exception('The random password does not meet the complexity requirements.')
 
     return random_password
+
+
+def collect_static():
+    call_command('collectstatic', verbosity=0, interactive=False)
+
