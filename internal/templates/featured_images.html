@@ -102,7 +102,7 @@
                 <div class="inner">
                     <div class="block">
                         <h3 class="block-title sub-title">
-                            <span>{% if image_uuid %}Edit{% else %}Add{% endif %} a Featured Image</span>
+                            <span>{% if image_uuid %}Edit Featured Image: {{ form.title.value }}{% else %}Add a Featured Image{% endif %} </span>
                         </h3>
                         <form action="" method="POST" enctype="multipart/form-data">
                             <div class="form-group{% if form.title.errors  %} has-error{% endif %}">

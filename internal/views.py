@@ -175,9 +175,7 @@ def featured_images(request, image_uuid=None):
             item.updated_by = request.user
             item.save()
 
-            if settings.IS_PROD:
-                # copy the image to the public site
-                shutil.copy(item.image.url, settings.IMAGE_PATH)
+            collect_static()
 
             messages.success(request, 'The featured image was saved successfully.')
             return redirect('internal:featured_images')

@@ -103,7 +103,7 @@
                 <div class="inner">
                     <div class="block">
                         <h3 class="block-title sub-title">
-                            <span>{% if news_uuid %}Edit{% else %}Add{% endif %} a News Item</span>
+                            <span>{% if news_uuid %}Edit: {{ form.title.value    }}{% else %}Add a News Item{% endif %}</span>
                         </h3>
                         <form action="" method="POST">
                             <div class="form-group{% if form.title.errors  %} has-error{% endif %}">
