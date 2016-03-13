@@ -2,6 +2,8 @@ from .base import *
 
 
 APPLICATION_URL = 'http://employees.navalsystemsinc.com'
+PUBLIC_URL = 'http://navalsystemsinc.com/shared/collect/static/'
+
 DEBUG = False
 ALLOWED_HOSTS = ['employees.navalsystemsinc.com']
 

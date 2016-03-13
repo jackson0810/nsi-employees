@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 import shutil
+import urllib3
 
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -8,6 +9,8 @@ from django.conf import settings
 from internal.forms import NewsItemForm, FunctionalCapabilityForm, TaskOrderForm, ImageItemForm, FormDataForm
 from shared.models import NewsItem, FunctionalCapability, TaskOrder, ImageItem, ContactItem, FormData
 from shared.utilities import collect_static
+
+http = urllib3.PoolManager()
 
 
 def home(request):
@@ -126,6 +129,7 @@ def task_orders(request, task_uuid=None):
             if settings.IS_PROD:
                 # copy the document to the public site
                 shutil.copy(item.document.url, '{}/{}'.format(settings.DOCUMENT_PATH, item.get_document_name))
+                http.request('GET', settings.PUBLIC_URL)
 
             messages.success(request, 'The task order was saved successfully.')
             return redirect('internal:task_orders')

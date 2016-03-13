@@ -2,6 +2,8 @@ from .base import *
 
 
 APPLICATION_URL = 'http://employees.nsilocal:8889'
+PUBLIC_URL = 'http://nsilocal:8890/shared/collect/static/'
+
 DEBUG = True
 ALLOWED_HOSTS = []
 
