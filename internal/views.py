@@ -1,9 +1,10 @@
-import os
+from datetime import datetime, timedelta
 import shutil
 
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.conf import settings
+from django.core.management import call_command
 
 from internal.forms import NewsItemForm, FunctionalCapabilityForm, TaskOrderForm, ImageItemForm, FormDataForm
 from shared.models import NewsItem, FunctionalCapability, TaskOrder, ImageItem, ContactItem, FormData
@@ -249,9 +250,7 @@ def forms_items(request, form_uuid=None):
             item.updated_by = request.user
             item.save()
 
-            if settings.IS_PROD:
-                # copy the document to the public site
-                shutil.copy(item.document.url, '{}/{}'.format(settings.FORM_PATH, item.get_document_name))
+            call_command('collectstatic', verbosity=0, interactive=False)
 
             messages.success(request, 'The form order was saved successfully.')
             return redirect('internal:forms_items')
@@ -285,7 +284,8 @@ def delete_forms_item(request, form_uuid):
 
 
 def employee_forms(request):
-    form_items = FormData.objects.filter(is_active=True)
+    time_threshold = datetime.now() - timedelta(minutes=10)
+    items = FormData.objects.filter(is_active=True)
 
-    return render(request, 'forms.html', {'form_items': form_items})
+    return render(request, 'forms.html', {'form_items': items})
 
