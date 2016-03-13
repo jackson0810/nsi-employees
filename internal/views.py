@@ -126,6 +126,8 @@ def task_orders(request, task_uuid=None):
             item.updated_by = request.user
             item.save()
 
+            collect_static()
+
             if settings.IS_PROD:
                 # copy the document to the public site
                 shutil.copy(item.document.url, '{}/{}'.format(settings.DOCUMENT_PATH, item.get_document_name))
