@@ -6,8 +6,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.conf import settings
 
-from internal.forms import NewsItemForm, FunctionalCapabilityForm, TaskOrderForm, ImageItemForm, FormDataForm
-from shared.models import NewsItem, FunctionalCapability, TaskOrder, ImageItem, ContactItem, FormData
+from internal.forms import NewsItemForm, FunctionalCapabilityForm, TaskOrderForm, ImageItemForm, FormDataForm, \
+    FomCategoryForm
+from shared.models import NewsItem, FunctionalCapability, TaskOrder, ImageItem, ContactItem, FormData, FormCategory
 from shared.utilities import collect_static
 
 http = urllib3.PoolManager()
@@ -253,6 +254,7 @@ def forms_items(request, form_uuid=None):
             item = form.save(commit=False)
             item.updated_by = request.user
             item.save()
+            form.save_m2m()
 
             collect_static()
             messages.success(request, 'The form was saved successfully.')
@@ -277,18 +279,63 @@ def delete_forms_item(request, form_uuid):
         messages.success(request, 'The form was deleted')
     except FormData.DoesNotExist:
         messages.error(request, 'The form selected to be deleted no longer exists.')
-    except OSError:
-        raise
     except Exception as e:
-        raise
         messages.error(request, 'An error occurred deleting the selected form.  Please try again.')
 
     return redirect('internal:forms_items')
 
 
 def employee_forms(request):
-    time_threshold = datetime.now() - timedelta(minutes=10)
     items = FormData.objects.filter(is_active=True)
 
     return render(request, 'forms.html', {'form_items': items})
 
+
+def edit_form_category(request):
+    return render(request, 'forms.html')
+
+
+def form_category(request, category_uuid=None):
+    items = FormCategory.objects.filter(is_active=True)
+
+    category_item = None
+
+    if category_uuid:
+        try:
+            category_item = items.get(category_uuid=category_uuid)
+        except FormCategory.DoesNotExist:
+            messages.error(request, 'The form category selected to be edited no longer exists.')
+
+            return redirect('internal:forms_items')
+
+    if request.method == 'POST':
+        form = FomCategoryForm(request.POST, request.FILES, instance=category_item)
+
+        if form.is_valid():
+            item = form.save(commit=False)
+            item.updated_by = request.user
+            item.save()
+
+            collect_static()
+            messages.success(request, 'The form category was saved successfully.')
+            return redirect('internal:form_category')
+        else:
+            messages.error(request, settings.GENERIC_ERROR)
+    else:
+        form = FomCategoryForm(instance=category_item)
+
+    return render(request, 'form_categories.html', {'form': form, 'items': items, 'category_uuid': category_uuid})
+
+
+def delete_form_category(request, category_uuid):
+    try:
+        item = FormCategory.objects.get(category_uuid=category_uuid)
+        item.delete()
+
+        messages.success(request, 'The form category was deleted')
+    except FormCategory.DoesNotExist:
+        messages.error(request, 'The form category selected to be deleted no longer exists.')
+    except Exception as e:
+        messages.error(request, 'An error occurred deleting the selected form category.  Please try again.')
+
+    return redirect('internal:form_category')

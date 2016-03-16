@@ -2,8 +2,8 @@ from django import forms
 from django.forms import ModelForm
 
 
-from shared.models import NewsItem, FunctionalCapability, ImageItem, TaskOrder, FormData
-from shared.forms import RadioSelectInline
+from shared.models import NewsItem, FunctionalCapability, ImageItem, TaskOrder, FormData, FormCategory
+from shared.forms import RadioSelectInline, CheckboxSelectInline
 
 
 class NewsItemForm(ModelForm):
@@ -72,4 +72,18 @@ class FormDataForm(ModelForm):
 
     class Meta:
         model = FormData
-        fields = ['title', 'text', 'document', 'is_active']
+        fields = ['title', 'text', 'document', 'is_active', 'category']
+
+
+class FomCategoryForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+
+        super(FomCategoryForm, self).__init__(*args, **kwargs)
+
+        bool_choices = ((True, 'Yes'), (False, 'No'))
+
+        self.fields['is_active'] = forms.ChoiceField(choices=bool_choices, widget=RadioSelectInline, initial=True)
+
+    class Meta:
+        model = FormCategory
+        fields = ['category', 'is_active']

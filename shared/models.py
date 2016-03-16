@@ -92,11 +92,27 @@ class ContactItem(models.Model):
         return self.category
 
 
+class FormCategory(CommonFields):
+    category_uuid = models.CharField(max_length=36, default=make_uuid, db_index=True)
+    category = models.CharField(max_length=250, verbose_name='form category', help_text='hold down command')
+
+    class Meta:
+        ordering = ['category']
+
+    def __str__(self):
+        return self.category
+
+    @property
+    def get_my_forms(self):
+        return self.formdata_set.all()
+
+
 class FormData(CommonFields):
     form_uuid = models.CharField(max_length=36, default=make_uuid, db_index=True)
     title = models.CharField(max_length=250, verbose_name='title of form')
     text = models.TextField(verbose_name='form detail', blank=True, null=True)
     document = models.FileField(upload_to='{}/shared/static/forms'.format(settings.SITE_ROOT))
+    category = models.ManyToManyField(FormCategory)
 
     class Meta:
         ordering = ['title']

@@ -64,6 +64,7 @@
                         <tr>
                             <th scope="col">Title</th>
                             <th scope="col">Document</th>
+                            <th scope="col">Category(ies)</th>
                             <th scope="col">Active</th>
                             <th scope="col">&nbsp;</th>
                         </tr>
@@ -91,6 +92,11 @@
                             </td>
                             <td>
                                 <a href="{% static 'forms/' %}{{ item.get_document_name }}" target="_blank">{{ item.get_document_name }}</a>
+                            </td>
+                            <td>
+                                {% for cat in item.category.all %}
+                                    {{ cat.category }}{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
                             </td>
                             <td>{{ item.is_active|yesno|title }}</td>
                             <td><a href="{% url 'internal:delete_forms_item' item.form_uuid %}" title="Delete form."><i class="fa fa-trash"></i> </a> </td>
@@ -129,6 +135,14 @@
                                     </label><br>
                                 {% endif %}
                                 {{ form.document }}
+                            </div>
+                            <div class="form-group{% if form.category.errors  %} has-error{% endif %}">
+                                {% if form.category.errors %}
+                                    <label class="control-label" for="{{ form.category.auto_id }}">
+                                        <i class="fa fa-exclamation-triangle"></i> Category is required.
+                                    </label><br>
+                                {% endif %}
+                                {{ form.category }}
                             </div>
                             <div class="form-group{% if form.is_active.errors  %} has-error{% endif %}">
                                 <fieldset>
