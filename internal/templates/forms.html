@@ -57,28 +57,26 @@
 {% block content %}
     <div class="block">
         <div class="row">
-            <div class="col-md-12">
-                <table id="grid_items" class="table table-striped table-hover dataTable">
-                    <caption style="display: none"></caption>
-                    <thead>
-                        <tr>
-                            <th scope="col">Title</th>
-                            <th scope="col">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for item in form_items %}
-                        <tr>
-                            <td width="50%">
-                                <a href="{% static 'forms/' %}{{ item.get_document_name }}" target="_blank">{{ item.title }}</a>
-                            </td>
-                            <td>
-                               {{ item.text|safe }}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+            <div class="col-md-4">
+                {% for category in categories %}
+                    {% if category.get_my_forms %}
+                        <h3 class="block-title sub-title">
+                            <i class="glyphicon glyphicon-tasks icon-small icon-inverse-80 _icon-circle"></i>
+                            {{ category.category }}
+                        </h3>
+                        <ul class="list-unstyled shaded-glyph">
+                            {% for item in category.get_my_forms %}
+                                <li><i class="glyphicon glyphicon-ok text-info"></i>
+                                    <a href="{% static 'forms/' %}{{ item.get_document_name }}"
+                                        target="_blank">{{ item.title }}</a>
+                                    {% if item.text %}
+                                        {{ item.text|safe }}
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>
