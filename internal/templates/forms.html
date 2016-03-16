@@ -61,7 +61,6 @@
                 {% for category in categories %}
                     {% if category.get_my_forms %}
                         <h3 class="block-title sub-title">
-                            <i class="glyphicon glyphicon-tasks icon-small icon-inverse-80 _icon-circle"></i>
                             {{ category.category }}
                         </h3>
                         <ul class="list-unstyled shaded-glyph">
@@ -75,6 +74,7 @@
                                 </li>
                             {% endfor %}
                         </ul>
+                        <br/>
                     {% endif %}
                 {% endfor %}
             </div>
