@@ -35,20 +35,35 @@
             } );
             $('.dataTables_filter input').attr("placeholder", "To filter list, start typing.");
 
-            CKEDITOR.replace( '{{ form.text.auto_id }}' );
+{#            CKEDITOR.replace( '{{ form.text.auto_id }}' );#}
+
+            $('#{{ form.data_type.auto_id }}').change(function (){
+                var val = $(this).val();
+
+                if (val == 'form') {
+                    $('#link_div').hide();
+                    $('#{{ form.link.auto_id }}').val('');
+                    $('#document_div').show();
+                } else {
+                    $('#link_div').show();
+                    $('#document_div').hide();
+                    $('#{{ form.document.auto_id }}').val('');
+                    $('input[id=document-clear_id]:checked').prop('checked', true);
+                }
+            }).change();
         });
     </script>
 {% endblock %}
 
 
-{% block title %}Manage Employee Forms{% endblock %}
+{% block title %}Manage Employee Forms/Links{% endblock %}
 {% block content_highlight %}
     <!-- ======== @Region: #highlighted ======== -->
     <div id="highlighted">
         <div class="container">
             <div class="header">
                 <h2 class="page-title">
-                    <span>Manage Employee Forms</span>
+                    <span>Manage Employee Forms/Links</span>
                 </h2>
             </div>
         </div>
@@ -57,14 +72,14 @@
 {% block content %}
     <div class="block">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <table id="grid_items" class="table table-striped table-hover dataTable">
                     <caption style="display: none"></caption>
                     <thead>
                         <tr>
-                            <th scope="col">Title</th>
+                            <th scope="col">Title (Link)</th>
                             <th scope="col">Document</th>
-                            <th scope="col">Category(ies)</th>
+                            <th scope="col">Categories</th>
                             <th scope="col">Active</th>
                             <th scope="col">&nbsp;</th>
                         </tr>
@@ -73,7 +88,11 @@
                     {% for item in form_items %}
                         <tr>
                             <td>
-                                <a href="{% url 'internal:edit_forms_items' item.form_uuid %}">{{ item.title }}</a>
+                                {% if item.data_type == 'link' %}
+                                    <a href="{{ item.link|safe }}" target="_blank">{{ item.title }}</a>
+                                {% else %}
+                                    {{ item.title }}
+                                {% endif %}
                                 <small class="media-body">
                                     <ul class="list-inline meta text-muted">
                                       <li>
@@ -91,7 +110,11 @@
                                 </small>
                             </td>
                             <td>
-                                <a href="{% static 'forms/' %}{{ item.get_document_name }}" target="_blank">{{ item.get_document_name }}</a>
+                                {% if item.data_type == 'form' %}
+                                    <a href="{% static 'forms/' %}{{ item.get_document_name }}" target="_blank">{{ item.get_document_name }}</a>
+                                {% else %}
+                                    N/A
+                                {% endif %}
                             </td>
                             <td>
                                 {% for cat in item.category.all %}
@@ -99,47 +122,66 @@
                                 {% endfor %}
                             </td>
                             <td>{{ item.is_active|yesno|title }}</td>
-                            <td><a href="{% url 'internal:delete_forms_item' item.form_uuid %}" title="Delete form."><i class="fa fa-trash"></i> </a> </td>
+                            <td class="edit_column">
+                                <a href="{% url 'internal:edit_forms_items' item.form_uuid %}"><i class="fa fa-pencil"></i></a>
+                                <span class="padit">|</span>
+                                <a href="{% url 'internal:delete_forms_item' item.form_uuid %}" title="Delete form."><i class="fa fa-trash alert-danger"></i></a></td>
                         </tr>
                     {% endfor %}
                     </tbody>
                 </table>
             </div>
-            <div class="col-md-6 sidebar sidebar-right">
+            <div class="col-md-4 sidebar sidebar-right">
                 <div class="inner">
                     <div class="block">
                         <h3 class="block-title sub-title">
-                            <span>{% if form_uuid %}Edit the{% else %}Add a{% endif %} Form</span>
+                            <span>{% if form_uuid %}Edit the{% else %}Add a{% endif %}
+                                {% if form.data_type.value == 'form' %}Form{% else %}Link{% endif %}</span>
                         </h3>
                         <form action="" method="POST" enctype="multipart/form-data">
                             <div class="form-group{% if form.title.errors  %} has-error{% endif %}">
                                 {% if form.title.errors %}
                                     <label class="control-label" for="{{ form.title.auto_id }}">
-                                        <i class="fa fa-exclamation-triangle"></i> Form title is required.
+                                        <i class="fa fa-exclamation-triangle"></i> Title is required.
                                     </label><br>
                                 {% endif %}
                                 {{ form.title|htmlattributes:"class: form-control, placeholder:Title" }}
                             </div>
-                            <div class="form-group{% if form.text.errors  %} has-error{% endif %}">
-                                {% if form.text.errors %}
-                                    <label class="control-label" for="{{ form.text.auto_id }}">
-                                        <i class="fa fa-exclamation-triangle"></i> Detail is required.
-                                    </label><br>
-                                {% endif %}
-                                {{ form.text|htmlattributes:"class: form-control, placeholder:Details" }}
+{#                            <div class="form-group{% if form.text.errors  %} has-error{% endif %}">#}
+{#                                {% if form.text.errors %}#}
+{#                                    <label class="control-label" for="{{ form.text.auto_id }}">#}
+{#                                        <i class="fa fa-exclamation-triangle"></i> Detail is required.#}
+{#                                    </label><br>#}
+{#                                {% endif %}#}
+{#                                {{ form.text|htmlattributes:"class: form-control, placeholder:Details" }}#}
+{#                            </div>#}
+                            <div class="form-group{% if form.data_type.errors  %} has-error{% endif %}">
+                                <fieldset>
+                                    <div class="controls">
+                                        {{ form.data_type|htmlattributes:"class: form-control col-sm-4" }}
+                                    </div>
+                                </fieldset>
                             </div>
-                            <div class="form-group{% if form.document.errors  %} has-error{% endif %}">
+                            <div class="form-group{% if form.document.errors  %} has-error{% endif %}" id="document_div">
                                 {% if form.document.errors %}
                                     <label class="control-label" for="{{ form.document.auto_id }}">
-                                        <i class="fa fa-exclamation-triangle"></i> Document is required.
+                                        <i class="fa fa-exclamation-triangle"></i> {{ form.document.errors|striptags }}
                                     </label><br>
                                 {% endif %}
-                                {{ form.document }}
+                                {{ form.document|htmlattributes:"class: form-control" }}
+                            </div>
+                            <div class="form-group{% if form.link.errors  %} has-error{% endif %}" id="link_div">
+                                {% if form.link.errors %}
+                                    <label class="control-label" for="{{ form.link.auto_id }}">
+                                        <i class="fa fa-exclamation-triangle"></i> {{ form.link.errors|striptags }}
+                                    </label><br>
+                                {% endif %}
+                                {{ form.link|htmlattributes:"class: form-control, placeholder:Paste or type link.." }}
                             </div>
                             <div class="form-group{% if form.category.errors  %} has-error{% endif %}">
                                 {% if form.category.errors %}
                                     <label class="control-label" for="{{ form.category.auto_id }}">
-                                        <i class="fa fa-exclamation-triangle"></i> Category is required.
+                                        <i class="fa fa-exclamation-triangle"></i> Please select one or more categories.
                                     </label><br>
                                 {% endif %}
                                 {{ form.category }}

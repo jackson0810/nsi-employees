@@ -58,6 +58,7 @@
     <div class="block">
         <div class="row">
             <div class="col-md-6">
+                <p>Categories with associated forms cannot be deleted until all forms are removed or their category switched.</p>
                 <table id="grid_items" class="table table-striped table-hover dataTable">
                     <caption style="display: none"></caption>
                     <thead>
@@ -90,14 +91,16 @@
                                 </small>
                             </td>
                             <td>
-                                {% for form in item.get_my_forms %}
-                                    <a href="{% url 'internal:edit_forms_items' form.form_uuid %}">{{ form.title }}</a><br/>
+                                {% for form in item.has_links_or_documents.documents %}
+                                    {{ form.title }}{% if not forloop.last %}, {% endif %}<br/>
                                 {% endfor %}
                             </td>
-                            <td>{{ item.is_active|yesno|title }}</td>
-                            <td>
-                                {% if not item.get_my_forms %}
-                                    <a href="{% url 'internal:delete_form_category' item.category_uuid %}" title="Delete form."><i class="fa fa-trash"></i> </a>
+                            <td align="center"><i class="glyphicon glyphicon- {% if item.is_active %}glyphicon-{% else %}glyphicon-eye-close{% endif %} text-info" /></i></td>
+                            <td class="edit_column">
+                                <a href="{% url 'internal:edit_form_category' item.category_uuid %}" title="Edit Category."><i class="fa fa-pencil"></i> </a>
+                                {% if not item.has_links_or_documents.documents and not item.has_links_or_documents.links %}
+                                    <span class="padit">|</span>
+                                    <a href="{% url 'internal:delete_form_category' item.category_uuid %}" title="Delete form."><i class="fa fa-trash alert-danger"></i> </a>
                                 {% endif %}
                             </td>
                         </tr>

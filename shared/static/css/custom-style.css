@@ -148,3 +148,11 @@ ul.shaded-glyph li i.glyphicon {
   vertical-align: top;
   white-space: nowrap;
 }
+
+.padit {
+  padding: 5px;
+}
+
+.edit_column{
+    width: 75px;
+}

@@ -94,7 +94,7 @@ class ContactItem(models.Model):
 
 class FormCategory(CommonFields):
     category_uuid = models.CharField(max_length=36, default=make_uuid, db_index=True)
-    category = models.CharField(max_length=250, verbose_name='form category', help_text='hold down command')
+    category = models.CharField(max_length=250, verbose_name='form category')
 
     class Meta:
         ordering = ['category']
@@ -106,12 +106,22 @@ class FormCategory(CommonFields):
     def get_my_forms(self):
         return self.formdata_set.all()
 
+    def has_links_or_documents(self):
+        form_data = self.get_my_forms
+
+        return {
+            'documents': form_data.filter(document__isnull=False),
+            'links': form_data.filter(link__isnull=False)
+        }
+
 
 class FormData(CommonFields):
     form_uuid = models.CharField(max_length=36, default=make_uuid, db_index=True)
     title = models.CharField(max_length=250, verbose_name='title of form')
     text = models.TextField(verbose_name='form detail', blank=True, null=True)
-    document = models.FileField(upload_to='{}/shared/static/forms'.format(settings.SITE_ROOT))
+    data_type = models.CharField(max_length=5)
+    document = models.FileField(upload_to='{}/shared/static/forms'.format(settings.SITE_ROOT), blank=True, null=True)
+    link = models.URLField(verbose_name='url to website', blank=True, null=True)
     category = models.ManyToManyField(FormCategory)
 
     class Meta:

@@ -73,7 +73,7 @@
                                 <img class="media" src="{% static 'img/slides/' %}{{ featured_image.get_image_name }}" /></a>
                             </td>
                             <td>
-                                <a href="{% url 'internal:edit_featured_image' featured_image.image_uuid %}">{{ featured_image.title }}</a>
+                                {{ featured_image.title }}
                                 <small class="media-body">
                                     <ul class="list-inline meta text-muted">
                                       <li>
@@ -92,7 +92,10 @@
                             </td>
                             <td>{{ featured_image.featured|yesno|title }}</td>
                             <td>{{ featured_image.is_active|yesno|title }}</td>
-                            <td><a href="{% url 'internal:delete_featured_image' featured_image.image_uuid %}" title="Delete featured image."><i class="fa fa-trash"></i> </a> </td>
+                            <td class="edit_column">
+                                <a href="{% url 'internal:edit_featured_image' featured_image.image_uuid %}"><i class="fa fa-pencil"></i></a>
+                                <span class="padit">|</span>
+                                <a href="{% url 'internal:delete_featured_image' featured_image.image_uuid %}" title="Delete featured image."><i class="fa fa-trash alert-danger"></i </a> </td>
                         </tr>
                     {% endfor %}
                     </tbody>

@@ -67,12 +67,23 @@ class FormDataForm(ModelForm):
         super(FormDataForm, self).__init__(*args, **kwargs)
 
         bool_choices = ((True, 'Yes'), (False, 'No'))
+        data_type_choices = (('form', 'Form'), ('link', 'Link'))
 
         self.fields['is_active'] = forms.ChoiceField(choices=bool_choices, widget=RadioSelectInline, initial=True)
+        self.fields['data_type'] = forms.ChoiceField(choices=data_type_choices, initial='form')
+
+    def clean(self):
+        cleaned_data = super(FormDataForm, self).clean()
+        data_type = cleaned_data.get('data_type')
+
+        if data_type == 'form' and not cleaned_data.get('document'):
+            self._errors['document'] = self.error_class('Please choose the form you would like to upload.')
+        elif data_type == 'link' and not cleaned_data.get('link'):
+            self._errors['link'] = self.error_class('A valid link is required')
 
     class Meta:
         model = FormData
-        fields = ['title', 'text', 'document', 'is_active', 'category']
+        fields = ['title', 'document', 'is_active', 'category', 'data_type', 'link']
 
 
 class FomCategoryForm(ModelForm):

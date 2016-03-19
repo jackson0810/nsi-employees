@@ -73,7 +73,7 @@
                     {% for news_item in news_items %}
                         <tr>
                             <td>
-                                <a href="{% url 'internal:edit_news_items' news_item.news_uuid %}">{{ news_item.title }}</a>
+                                {{ news_item.title }}
                                 <small class="media-body">
                                     <ul class="list-inline meta text-muted">
                                       <li>
@@ -93,7 +93,10 @@
                             <td>{{ news_item.featured|yesno|title }}</td>
                             <td>{{ news_item.news_year }}</td>
                             <td>{{ news_item.is_active|yesno|title }}</td>
-                            <td><a href="{% url 'internal:delete_news_item' news_item.news_uuid %}" title="Delete news item."><i class="fa fa-trash"></i> </a> </td>
+                            <td width="60">
+                                <a href="{% url 'internal:edit_news_items' news_item.news_uuid %}"><i class="fa fa-pencil"></i></a>
+                                <span class="padit">|</span>
+                                <a href="{% url 'internal:delete_news_item' news_item.news_uuid %}" title="Delete news item."><i class="fa fa-trash alert-danger"></i> </a> </td>
                         </tr>
                     {% endfor %}
                     </tbody>

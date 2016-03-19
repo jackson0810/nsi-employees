@@ -63,13 +63,14 @@
                         <h3 class="block-title sub-title">
                             {{ category.category }}
                         </h3>
-                        <ul class="list-unstyled shaded-glyph">
+                        <ul class="list-unstyled shaded-glyph big-list">
                             {% for item in category.get_my_forms %}
                                 <li><i class="glyphicon glyphicon-ok text-info"></i>
-                                    <a href="{% static 'forms/' %}{{ item.get_document_name }}"
-                                        target="_blank">{{ item.title }}</a>
-                                    {% if item.text %}
-                                        {{ item.text|safe }}
+                                    {% if item.data_type == 'form' %}
+                                        <a href="{% static 'forms/' %}{{ item.get_document_name }}"
+                                            target="_blank">{{ item.title }}</a>
+                                    {% else %}
+                                        <a href="{{ item.link|safe }}" target="_blank">{{ item.title }}</a>
                                     {% endif %}
                                 </li>
                             {% endfor %}
