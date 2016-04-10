@@ -47,7 +47,8 @@ echo "Copying ${ENV_ABBR} passenger script to ${WORKDIR}${HOMEDIR}"
 cp passenger_wsgi_${ENV_ABBR}.py ${WORKDIR}${HOMEDIR}
 
 echo "Renaming the script passenger_wsgi_${ENV_ABBR}.py to passenger_wsgi.py"
-mv ${WORKDIR}${HOMEDIR}passenger_wsgi_${ENV_ABBR}.py passenger_wsgi.py
+rm ${WORKDIR}${HOMEDIR}passenger_wsgi.py
+mv ${WORKDIR}${HOMEDIR}passenger_wsgi_${ENV_ABBR}.py ${WORKDIR}${HOMEDIR}passenger_wsgi.py
 
 echo "Restarting internal site..."
 touch ${WORKDIR}${HOMEDIR}tmp/restart.txt
