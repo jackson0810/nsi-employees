@@ -287,9 +287,8 @@ def delete_forms_item(request, form_uuid):
 
 def employee_forms(request):
     categories = FormCategory.objects.filter(is_active=True)
-    items = FormData.objects.filter(is_active=True)
 
-    return render(request, 'forms.html', {'form_items': items, 'categories': categories})
+    return render(request, 'forms.html', {'categories': categories})
 
 
 def edit_form_category(request):

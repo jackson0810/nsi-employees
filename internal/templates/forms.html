@@ -34,8 +34,6 @@
                 }
             } );
             $('.dataTables_filter input').attr("placeholder", "To filter list, start typing.");
-
-            CKEDITOR.replace( '{{ form.text.auto_id }}' );
         });
     </script>
 {% endblock %}
@@ -63,7 +61,7 @@
                         <h3 class="block-title sub-title">
                             {{ category.category }}
                         </h3>
-                        <ul class="list-unstyled shaded-glyph big-list">
+                        <ul class="list-unstyled">
                             {% for item in category.get_my_forms %}
                                 <li><i class="glyphicon glyphicon-ok text-info"></i>
                                     {% if item.data_type == 'form' %}

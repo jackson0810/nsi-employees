@@ -2,7 +2,7 @@ import sys
 import os
 
 
-INTERP = "/home/nsishell/employees.navalsystemsinc.com/env/bin/python"
+INTERP = "/home/nsishell/employees.n-s-i/env/bin/python"
 
 if sys.executable != INTERP:
     os.execl(INTERP, INTERP, *sys.argv)

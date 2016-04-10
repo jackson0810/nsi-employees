@@ -4,6 +4,14 @@ WORKDIR="/home/nsishell/"
 HOMEDIR="employees.navalsystemsinc.com/"
 PROJECT="nsi-employees"
 
+echo "Deploy environment (Type 1=Staging or 2=Production.): "
+read ENVIRONMENT
+
+if ["${ENVIRONMENT" == 2]; then
+    HOMEDIR="n-s-i/"
+    ENV_ABBR="production"
+fi
+
 cd ${WORKDIR}${HOMEDIR}
 
 echo "Switching to the source directory for the internal site..."
@@ -34,8 +42,11 @@ ${WORKDIR}${HOMEDIR}env/bin/python3 manage.py collectstatic --noinput --settings
 echo "Installing requirements ..."
 ${WORKDIR}${HOMEDIR}env/bin/pip3 install -r requirements.txt
 
-echo "Moving passenger script"
-cp passenger_wsgi.py ${WORKDIR}${HOMEDIR}
+echo "Copying ${ENV_APPR} passenger script"
+cp passenger_wsgi_${ENV_ABBR}.py ${WORKDIR}${HOMEDIR}
+
+echo "Renaming the script to passenger_wsgi.py"
+mv ${WORKDIR}${HOMEDIR}passenger_wsgi_${ENV_ABBR}.py passenger_wsgi.py
 
 echo "Restarting internal site..."
 touch ${WORKDIR}${HOMEDIR}tmp/restart.txt
