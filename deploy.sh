@@ -7,7 +7,7 @@ PROJECT="nsi-employees"
 echo "Deploy environment (Type 1=Staging or 2=Production.): "
 read ENVIRONMENT
 
-if ["${ENVIRONMENT" == 2]; then
+if ["${ENVIRONMENT}" == 2]; then
     HOMEDIR="n-s-i/"
     ENV_ABBR="production"
 fi
