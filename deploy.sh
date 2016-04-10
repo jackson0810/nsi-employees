@@ -3,6 +3,7 @@
 WORKDIR="/home/nsishell/"
 HOMEDIR="employees.navalsystemsinc.com/"
 PROJECT="nsi-employees"
+ENV_ABBR="staging"
 
 echo "Deploy environment (Type 1=Staging or 2=Production.): "
 read ENVIRONMENT
@@ -42,7 +43,7 @@ ${WORKDIR}${HOMEDIR}env/bin/python3 manage.py collectstatic --noinput --settings
 echo "Installing requirements ..."
 ${WORKDIR}${HOMEDIR}env/bin/pip3 install -r requirements.txt
 
-echo "Copying ${ENV_APPR} passenger script"
+echo "Copying ${ENV_ABBR} passenger script"
 cp passenger_wsgi_${ENV_ABBR}.py ${WORKDIR}${HOMEDIR}
 
 echo "Renaming the script to passenger_wsgi.py"
