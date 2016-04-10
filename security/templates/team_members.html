@@ -64,7 +64,8 @@
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Access Level</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">Active</th>
+                            <th scope="col">Last Login</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -83,6 +84,7 @@
                             </td>
                             <td>{{ team_member.get_account_type_string }}</td>
                             <td>{{ team_member.is_active|yesno|title }}</td>
+                            <td>{{ team_member.dt_last_login }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
