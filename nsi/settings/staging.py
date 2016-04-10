@@ -7,7 +7,7 @@ PUBLIC_URL = 'http://navalsystemsinc.com/shared/collect/static/'
 DEBUG = False
 ALLOWED_HOSTS = ['employees.navalsystemsinc.com']
 
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.environ['SECRET_KEY_EMPLOYEES']
 
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public/static'))
 STATIC_URL = '/static/'
