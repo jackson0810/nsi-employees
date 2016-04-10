@@ -84,7 +84,7 @@
                             </td>
                             <td>{{ team_member.get_account_type_string }}</td>
                             <td>{{ team_member.is_active|yesno|title }}</td>
-                            <td>{{ team_member.dt_last_login }}</td>
+                            <td>{{ team_member.dt_last_login|date:"m/d/Y @ f A" }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
