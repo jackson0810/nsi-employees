@@ -58,7 +58,7 @@ INSTALLED_APPS = [
 
 # Applications
 INSTALLED_APPS += [
-    'internal',
+    'employees',
     'security',
     'shared'
 ]
@@ -114,14 +114,3 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ['DATABASE_NAME'],
-        'USER': os.environ['DATABASE_USER'],
-        'PASSWORD': os.environ['DATABASE_PASSWORD'],
-        'HOST': os.environ['DATABASE_SERVER'],
-        'PORT': '3306',
-    }
-}

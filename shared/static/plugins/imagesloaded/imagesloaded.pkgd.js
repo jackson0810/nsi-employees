@@ -109,7 +109,7 @@
 	};
 
 	/**
-	 * Fetches the requested listeners via getListeners but will always return the results inside an object. This is mainly for internal use but others may find it useful.
+	 * Fetches the requested listeners via getListeners but will always return the results inside an object. This is mainly for employees use but others may find it useful.
 	 *
 	 * @param {String|RegExp} evt Name of the event to return the listeners from.
 	 * @return {Object} All listener functions for an event in an object.

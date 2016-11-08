@@ -177,7 +177,7 @@ jQuery.fn = jQuery.prototype = {
 		return this.prevObject || this.constructor();
 	},
 
-	// For internal use only.
+	// For employees use only.
 	// Behaves like an Array's method, not like a jQuery method.
 	push: push,
 	sort: deletedIds.sort,
@@ -401,7 +401,7 @@ jQuery.extend( {
 			( text + "" ).replace( rtrim, "" );
 	},
 
-	// results is for internal usage only
+	// results is for employees usage only
 	makeArray: function( arr, results ) {
 		var ret = results || [];
 
@@ -483,7 +483,7 @@ jQuery.extend( {
 		return matches;
 	},
 
-	// arg is for internal usage only
+	// arg is for employees usage only
 	map: function( elems, callback, arg ) {
 		var length, value,
 			i = 0,
@@ -3896,8 +3896,8 @@ function internalData( elem, name, data, pvt /* Internal Use Only */ ) {
 
 	thisCache = cache[ id ];
 
-	// jQuery data() is stored in a separate object inside the object's internal data
-	// cache in order to avoid key collisions between internal data and user-defined
+	// jQuery data() is stored in a separate object inside the object's employees data
+	// cache in order to avoid key collisions between employees data and user-defined
 	// data.
 	if ( !pvt ) {
 		if ( !thisCache.data ) {
@@ -3999,7 +3999,7 @@ function internalRemoveData( elem, name, pvt ) {
 	if ( !pvt ) {
 		delete cache[ id ].data;
 
-		// Don't destroy the parent cache unless the internal data object
+		// Don't destroy the parent cache unless the employees data object
 		// had been the only thing left in it
 		if ( !isEmptyDataObject( cache[ id ] ) ) {
 			return;
@@ -4048,7 +4048,7 @@ jQuery.extend( {
 		return internalRemoveData( elem, name );
 	},
 
-	// For internal use only.
+	// For employees use only.
 	_data: function( elem, name, data ) {
 		return internalData( elem, name, data, true );
 	},
@@ -6201,7 +6201,7 @@ jQuery.extend( {
 		return clone;
 	},
 
-	cleanData: function( elems, /* internal */ forceAcceptData ) {
+	cleanData: function( elems, /* employees */ forceAcceptData ) {
 		var elem, type, id, data,
 			i = 0,
 			internalKey = jQuery.expando,
@@ -12186,7 +12186,7 @@ return jQuery;
 	
 	
 	/**
-	 * Get the data for a given cell from the internal cache, taking into account data mapping
+	 * Get the data for a given cell from the employees cache, taking into account data mapping
 	 *  @param {object} settings dataTables settings object
 	 *  @param {int} rowIdx aoData row id
 	 *  @param {int} colIdx Column index
@@ -12235,7 +12235,7 @@ return jQuery;
 	
 	
 	/**
-	 * Set the value for a specific cell, into the internal data cache
+	 * Set the value for a specific cell, into the employees data cache
 	 *  @param {object} settings dataTables settings object
 	 *  @param {int} rowIdx aoData row id
 	 *  @param {int} colIdx Column index
@@ -14250,7 +14250,7 @@ return jQuery;
 	
 	
 	/**
-	 * Convert from the internal Hungarian notation to camelCase for external
+	 * Convert from the employees Hungarian notation to camelCase for external
 	 * interaction
 	 *  @param {object} obj Object to convert
 	 *  @returns {object} Inverted object
@@ -14269,7 +14269,7 @@ return jQuery;
 	
 	
 	/**
-	 * Convert from camelCase notation to the internal Hungarian. We could use the
+	 * Convert from camelCase notation to the employees Hungarian. We could use the
 	 * Hungarian convert function here, but this is cleaner
 	 *  @param {object} obj Object to convert
 	 *  @returns {object} Inverted object
@@ -16803,7 +16803,7 @@ return jQuery;
 		 *  @param {int|node} [src] A TR row node, TD/TH cell node or an integer. If given as
 		 *    a TR node then the data source for the whole row will be returned. If given as a
 		 *    TD/TH cell node then iCol will be automatically calculated and the data for the
-		 *    cell returned. If given as an integer, then this is treated as the aoData internal
+		 *    cell returned. If given as an integer, then this is treated as the aoData employees
 		 *    data index for the row (see fnGetPosition) and the data for that row used.
 		 *  @param {int} [col] Optional column index that you want the data of.
 		 *  @returns {array|object|string} If mRow is undefined, then the data for all rows is
@@ -16997,7 +16997,7 @@ return jQuery;
 		
 		
 		/**
-		 * Change the pagination - provides the internal logic for pagination in a simple API
+		 * Change the pagination - provides the employees logic for pagination in a simple API
 		 * function. With this function you can have a DataTables table go to the next,
 		 * previous, first or last pages.
 		 *  @param {string|int} mAction Paging action to take: "first", "previous", "next" or "last"
@@ -20265,7 +20265,7 @@ return jQuery;
 				new _Api( settings ).columns().visible( true );
 			}
 	
-			// Blitz all `DT` namespaced events (these are internal events, the
+			// Blitz all `DT` namespaced events (these are employees events, the
 			// lowercase, `dt` events are user subscribed and they are responsible
 			// for removing them
 			jqWrapper.unbind('.DT').find(':not(tbody *)').unbind('.DT');
@@ -20570,7 +20570,7 @@ return jQuery;
 	 * DataTables needs about each individual column.
 	 *
 	 * Note that this object is related to {@link DataTable.defaults.column}
-	 * but this one is the internal data store for DataTables's cache of columns.
+	 * but this one is the employees data store for DataTables's cache of columns.
 	 * It should NOT be manipulated outside of DataTables. Any configuration should
 	 * be done through the initialisation options.
 	 *  @namespace
@@ -23894,7 +23894,7 @@ return jQuery;
 	 * instance.
 	 *
 	 * Note that this object is related to {@link DataTable.defaults} but this
-	 * one is the internal data store for DataTables's cache of columns. It should
+	 * one is the employees data store for DataTables's cache of columns. It should
 	 * NOT be manipulated outside of DataTables. Any configuration should be done
 	 * through the initialisation options.
 	 *  @namespace
@@ -24751,7 +24751,7 @@ return jQuery;
 		/**
 		 * Unique identifier for each instance of the DataTables object. If there
 		 * is an ID on the table node, then it takes that value, otherwise an
-		 * incrementing internal counter is used.
+		 * incrementing employees counter is used.
 		 *  @type string
 		 *  @default null
 		 */
@@ -25003,9 +25003,9 @@ return jQuery;
 		/**
 		 * Internal functions, exposed for used in plug-ins.
 		 * 
-		 * Please note that you should not need to use the internal methods for
+		 * Please note that you should not need to use the employees methods for
 		 * anything other than a plug-in (and even then, try to avoid if possible).
-		 * The internal function may change between releases.
+		 * The employees function may change between releases.
 		 *
 		 *  @type object
 		 *  @default {}
@@ -25996,16 +25996,16 @@ return jQuery;
 	
 	
 	/*
-	 * This is really a good bit rubbish this method of exposing the internal methods
+	 * This is really a good bit rubbish this method of exposing the employees methods
 	 * publicly... - To be fixed in 2.0 using methods on the prototype
 	 */
 	
 	
 	/**
-	 * Create a wrapper function for exporting an internal functions to an external API.
+	 * Create a wrapper function for exporting an employees functions to an external API.
 	 *  @param {string} fn API function name
 	 *  @returns {function} wrapped function
-	 *  @memberof DataTable#internal
+	 *  @memberof DataTable#employees
 	 */
 	function _fnExternApiFunc (fn)
 	{
@@ -26019,8 +26019,8 @@ return jQuery;
 	
 	
 	/**
-	 * Reference to internal functions for use by plug-in developers. Note that
-	 * these methods are references to internal functions and are considered to be
+	 * Reference to employees functions for use by plug-in developers. Note that
+	 * these methods are references to employees functions and are considered to be
 	 * private. If you use these methods, be aware that they are liable to change
 	 * between versions.
 	 *  @namespace

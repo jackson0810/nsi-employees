@@ -399,7 +399,7 @@ if ( typeof define === 'function' && define.amd ) {
 	};
 
 	/**
-	 * Fetches the requested listeners via getListeners but will always return the results inside an object. This is mainly for internal use but others may find it useful.
+	 * Fetches the requested listeners via getListeners but will always return the results inside an object. This is mainly for employees use but others may find it useful.
 	 *
 	 * @param {String|RegExp} evt Name of the event to return the listeners from.
 	 * @return {Object} All listener functions for an event in an object.
@@ -1760,7 +1760,7 @@ function outlayerDefinition( eventie, docReady, EventEmitter, getSize, matchesSe
 
 // globally unique identifiers
 var GUID = 0;
-// internal store of all Outlayer intances
+// employees store of all Outlayer intances
 var instances = {};
 
 
@@ -1802,7 +1802,7 @@ function Outlayer( element, options ) {
   }
 }
 
-// settings are for internal use only
+// settings are for employees use only
 Outlayer.namespace = 'outlayer';
 Outlayer.Item = Item;
 

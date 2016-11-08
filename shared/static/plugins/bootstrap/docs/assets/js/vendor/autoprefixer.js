@@ -5449,7 +5449,7 @@ module.exports={
   },
   "notes":"Partial support in Opera Mini refers to not supporting background sizing or background attachments. However Opera Mini 7.5 supports background sizing (including cover and contain values).\r\n\r\nPartial support in Safari 6 refers to not supporting background sizing offset from edges syntax.",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":88.87,
   "usage_perc_a":4.54,
@@ -5477,7 +5477,7 @@ module.exports={
     }
   ],
   "bugs":[
-    
+
   ],
   "categories":[
     "CSS3"
@@ -5664,7 +5664,7 @@ module.exports={
   },
   "notes":"Note that both the border-style and border-width must be specified for border-images to work according to spec, though older implementations may not have this requirement. Partial support refers to supporting the shorthand syntax, but not the individual properties (border-image-source, border-image-slice, etc). ",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":80.35,
   "usage_perc_a":5.64,
@@ -5902,7 +5902,7 @@ module.exports={
   },
   "notes":"",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":90.64,
   "usage_perc_a":0.01,
@@ -6141,7 +6141,7 @@ module.exports={
   },
   "notes":"Support can be somewhat emulated in older versions of IE using the non-standard `expression()` syntax. Partial support in IE9 refers to the browser crashing when used as a `background-position` value. Partial support in Android Browser 4.4 refers to the browser lacking the ability to multiply and divide values.",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":77.04,
   "usage_perc_a":5.27,
@@ -6368,7 +6368,7 @@ module.exports={
   },
   "notes":"Partial support in Android browser refers to buggy behavior in different scenarios.",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":88.04,
   "usage_perc_a":0.21,
@@ -6396,7 +6396,7 @@ module.exports={
     }
   ],
   "bugs":[
-    
+
   ],
   "categories":[
     "CSS3"
@@ -6583,7 +6583,7 @@ module.exports={
   },
   "notes":"",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":72.86,
   "usage_perc_a":0,
@@ -6812,7 +6812,7 @@ module.exports={
   },
   "notes":"Can be partially emulated in older IE versions using the non-standard \"shadow\" filter. Partial support in Safari, iOS Safari and Android Browser refers to missing \"inset\" and blur radius value support.",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":90.29,
   "usage_perc_a":0.3,
@@ -6848,7 +6848,7 @@ module.exports={
     }
   ],
   "bugs":[
-    
+
   ],
   "categories":[
     "CSS",
@@ -7036,7 +7036,7 @@ module.exports={
   },
   "notes":"Note that this property is significantly different from and incompatible with Microsoft's [older \"filter\" property](http://msdn.microsoft.com/en-us/library/ie/ms530752%28v=vs.85%29.aspx).\r\n\r\nPartial support in Firefox 31 [only with url() version](https://developer.mozilla.org/en-US/docs/Web/CSS/filter#Browser_compatibility)",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":60.68,
   "usage_perc_a":12.47,
@@ -7072,7 +7072,7 @@ module.exports={
     }
   ],
   "bugs":[
-    
+
   ],
   "categories":[
     "CSS3"
@@ -7259,7 +7259,7 @@ module.exports={
   },
   "notes":"Syntax used by browsers with prefixed support may be incompatible with that for proper support. \r\n\r\nPartial support in Opera 11.10 and 11.50 also refers to only having support for linear gradients.\r\n\r\nSupport can be somewhat emulated in older IE versions using the non-standard \"gradient\" filter. \r\n\r\nFirefox 10+, Opera 11.6+, Chrome 26+ and IE10+ also support the new \"to (side)\" syntax.",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":87.78,
   "usage_perc_a":0.62,
@@ -7291,7 +7291,7 @@ module.exports={
     }
   ],
   "bugs":[
-    
+
   ],
   "categories":[
     "CSS3"
@@ -7478,7 +7478,7 @@ module.exports={
   },
   "notes":"Chrome 29- and Android 4.0 Browser support \"-webkit-hyphens: none\", but not the \"auto\" property. Chrome 30+ doesn't support it either.",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":33.24,
   "usage_perc_a":2.87,
@@ -7510,7 +7510,7 @@ module.exports={
     }
   ],
   "bugs":[
-    
+
   ],
   "categories":[
     "CSS"
@@ -7697,7 +7697,7 @@ module.exports={
   },
   "notes":"Partial support in WebKit/Blink browsers refers to supporting the mask-image and mask-box-image properties, but lacks support for othe parts of the spec. Partial support in Firefox refers to only support for inline SVG mask elements i.e. mask: url(#foo).",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":0,
   "usage_perc_a":78.29,
@@ -7729,7 +7729,7 @@ module.exports={
     }
   ],
   "bugs":[
-    
+
   ],
   "categories":[
     "CSS"
@@ -7916,7 +7916,7 @@ module.exports={
   },
   "notes":"Partial support refers to support for alternative syntax: ::-webkit-input-placeholder (Chrome/Safari/Opera),\r\n::-moz-placeholder (Firefox) and \r\n:-ms-input-placeholder (IE). ",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":0,
   "usage_perc_a":87.88,
@@ -8133,7 +8133,7 @@ module.exports={
   },
   "notes":"",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":75.62,
   "usage_perc_a":0,
@@ -8598,7 +8598,7 @@ module.exports={
   },
   "notes":"",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":88.35,
   "usage_perc_a":0,
@@ -8836,7 +8836,7 @@ module.exports={
   },
   "notes":"Partial support refers to supporting only the `content-box` and `border-box` values, not `padding-box` (which was added to the spec later).",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":12.72,
   "usage_perc_a":83.97,
@@ -8860,7 +8860,7 @@ module.exports={
     }
   ],
   "bugs":[
-    
+
   ],
   "categories":[
     "CSS3"
@@ -9047,7 +9047,7 @@ module.exports={
   },
   "notes":"Chrome, Safari and Firefox also support the unofficial `grab` and `grabbing` values (with prefix)",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":50.93,
   "usage_perc_a":0,
@@ -9071,7 +9071,7 @@ module.exports={
     }
   ],
   "bugs":[
-    
+
   ],
   "categories":[
     "CSS3"
@@ -9258,7 +9258,7 @@ module.exports={
   },
   "notes":"",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":73.05,
   "usage_perc_a":0,
@@ -9535,7 +9535,7 @@ module.exports={
     }
   ],
   "bugs":[
-    
+
   ],
   "categories":[
     "CSS3"
@@ -9722,7 +9722,7 @@ module.exports={
   },
   "notes":"Partial support in older Firefox versions refers to using an older syntax. Partial support in older Chrome versions refers to lacking support in Mac OS X. ",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":71.46,
   "usage_perc_a":1.64,
@@ -9959,7 +9959,7 @@ module.exports={
   },
   "notes":"Partial support refers to supporting an earlier draft of the spec.",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":54.02,
   "usage_perc_a":13.03,
@@ -9983,7 +9983,7 @@ module.exports={
     }
   ],
   "bugs":[
-    
+
   ],
   "categories":[
     "CSS3"
@@ -10170,7 +10170,7 @@ module.exports={
   },
   "notes":"Prefixes are on the values, not the property names (e.g. -webkit-min-content) Firefox currently supports the \"-moz-available\" property rather than \"-moz-fill-available\".",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":69.7,
   "usage_perc_a":0,
@@ -10401,7 +10401,7 @@ module.exports={
   },
   "notes":"Partial support refers to not supporting the `break-before`, `break-after`, `break-inside` properties. Webkit browsers do have equivalent support for the non-standard `-webkit-column-break-*` properties while Firefox supports `page-break-*` to accomplish the same result.",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":12.95,
   "usage_perc_a":78.36,
@@ -10433,7 +10433,7 @@ module.exports={
     }
   ],
   "bugs":[
-    
+
   ],
   "categories":[
     "DOM",
@@ -10621,7 +10621,7 @@ module.exports={
   },
   "notes":"Partial support in IE10 refers the lack of pointerenter and pointerleave events. Firefox Nightly provides 'dom.w3c_pointer_events.enabled' option to support this specification starting with version 28.",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":7.4,
   "usage_perc_a":2.48,
@@ -10653,7 +10653,7 @@ module.exports={
     }
   ],
   "bugs":[
-    
+
   ],
   "categories":[
     "CSS3"
@@ -11057,7 +11057,7 @@ module.exports={
   },
   "notes":"",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":11.71,
   "usage_perc_a":0,
@@ -11300,7 +11300,7 @@ module.exports={
   },
   "notes":"The scale transform can be emulated in IE < 9 using Microsoft's \"zoom\" extension, others are (not easily) possible using the MS Matrix filter",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":90.59,
   "usage_perc_a":0,
@@ -11536,7 +11536,7 @@ module.exports={
   },
   "notes":"Partial support in IE refers to not supporting [the transform-style: preserve-3d property](http://msdn.microsoft.com/en-us/library/ie/hh673529%28v=vs.85%29.aspx#the_ms_transform_style_property). This prevents nesting 3D transformed elements.",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":77.64,
   "usage_perc_a":9.87,
@@ -11568,7 +11568,7 @@ module.exports={
     }
   ],
   "bugs":[
-    
+
   ],
   "categories":[
     "CSS"
@@ -11755,7 +11755,7 @@ module.exports={
   },
   "notes":"Currently the user-select property does not appear in any W3C specification. Support information here is only for \"none\" value, not others.",
   "notes_by_num":{
-    
+
   },
   "usage_perc_y":88.21,
   "usage_perc_a":0,
@@ -14569,11 +14569,11 @@ module.exports = vendor;
         return b.replace(/[\s\S]{1,3}/g, cb_encode);
     };
     var _encode = buffer
-        ? function (u) { return (new buffer(u)).toString('base64') } 
+        ? function (u) { return (new buffer(u)).toString('base64') }
     : function (u) { return btoa(utob(u)) }
     ;
     var encode = function(u, urisafe) {
-        return !urisafe 
+        return !urisafe
             ? _encode(u)
             : _encode(u).replace(/[+\/]/g, function(m0) {
                 return m0 == '+' ? '-' : '_';
@@ -14786,8 +14786,8 @@ define(function (require, exports, module) {
 
   /**
    * Returns the array representation of this set (which has the proper indices
-   * indicated by indexOf). Note that this is a copy of the internal array used
-   * for storing the members so that no one can mess with internal state.
+   * indicated by indexOf). Note that this is a copy of the employees array used
+   * for storing the members so that no one can mess with employees state.
    */
   ArraySet.prototype.toArray = function ArraySet_toArray() {
     return this._array.slice();
@@ -16956,7 +16956,7 @@ function amdefine(module, requireFn) {
         }
 
         //Set up properties for this module. If an ID, then use
-        //internal cache. If no ID, then use the external variables
+        //employees cache. If no ID, then use the external variables
         //for this node module.
         if (id) {
             //Put the module in deep freeze until there is a

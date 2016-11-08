@@ -1145,7 +1145,7 @@
 	
 	
 	/**
-	 * Get the data for a given cell from the internal cache, taking into account data mapping
+	 * Get the data for a given cell from the employees cache, taking into account data mapping
 	 *  @param {object} settings dataTables settings object
 	 *  @param {int} rowIdx aoData row id
 	 *  @param {int} colIdx Column index
@@ -1194,7 +1194,7 @@
 	
 	
 	/**
-	 * Set the value for a specific cell, into the internal data cache
+	 * Set the value for a specific cell, into the employees data cache
 	 *  @param {object} settings dataTables settings object
 	 *  @param {int} rowIdx aoData row id
 	 *  @param {int} colIdx Column index
@@ -3209,7 +3209,7 @@
 	
 	
 	/**
-	 * Convert from the internal Hungarian notation to camelCase for external
+	 * Convert from the employees Hungarian notation to camelCase for external
 	 * interaction
 	 *  @param {object} obj Object to convert
 	 *  @returns {object} Inverted object
@@ -3228,7 +3228,7 @@
 	
 	
 	/**
-	 * Convert from camelCase notation to the internal Hungarian. We could use the
+	 * Convert from camelCase notation to the employees Hungarian. We could use the
 	 * Hungarian convert function here, but this is cleaner
 	 *  @param {object} obj Object to convert
 	 *  @returns {object} Inverted object
@@ -5762,7 +5762,7 @@
 		 *  @param {int|node} [src] A TR row node, TD/TH cell node or an integer. If given as
 		 *    a TR node then the data source for the whole row will be returned. If given as a
 		 *    TD/TH cell node then iCol will be automatically calculated and the data for the
-		 *    cell returned. If given as an integer, then this is treated as the aoData internal
+		 *    cell returned. If given as an integer, then this is treated as the aoData employees
 		 *    data index for the row (see fnGetPosition) and the data for that row used.
 		 *  @param {int} [col] Optional column index that you want the data of.
 		 *  @returns {array|object|string} If mRow is undefined, then the data for all rows is
@@ -5956,7 +5956,7 @@
 		
 		
 		/**
-		 * Change the pagination - provides the internal logic for pagination in a simple API
+		 * Change the pagination - provides the employees logic for pagination in a simple API
 		 * function. With this function you can have a DataTables table go to the next,
 		 * previous, first or last pages.
 		 *  @param {string|int} mAction Paging action to take: "first", "previous", "next" or "last"
@@ -9224,7 +9224,7 @@
 				new _Api( settings ).columns().visible( true );
 			}
 	
-			// Blitz all `DT` namespaced events (these are internal events, the
+			// Blitz all `DT` namespaced events (these are employees events, the
 			// lowercase, `dt` events are user subscribed and they are responsible
 			// for removing them
 			jqWrapper.unbind('.DT').find(':not(tbody *)').unbind('.DT');
@@ -9529,7 +9529,7 @@
 	 * DataTables needs about each individual column.
 	 *
 	 * Note that this object is related to {@link DataTable.defaults.column}
-	 * but this one is the internal data store for DataTables's cache of columns.
+	 * but this one is the employees data store for DataTables's cache of columns.
 	 * It should NOT be manipulated outside of DataTables. Any configuration should
 	 * be done through the initialisation options.
 	 *  @namespace
@@ -12853,7 +12853,7 @@
 	 * instance.
 	 *
 	 * Note that this object is related to {@link DataTable.defaults} but this
-	 * one is the internal data store for DataTables's cache of columns. It should
+	 * one is the employees data store for DataTables's cache of columns. It should
 	 * NOT be manipulated outside of DataTables. Any configuration should be done
 	 * through the initialisation options.
 	 *  @namespace
@@ -13710,7 +13710,7 @@
 		/**
 		 * Unique identifier for each instance of the DataTables object. If there
 		 * is an ID on the table node, then it takes that value, otherwise an
-		 * incrementing internal counter is used.
+		 * incrementing employees counter is used.
 		 *  @type string
 		 *  @default null
 		 */
@@ -13962,9 +13962,9 @@
 		/**
 		 * Internal functions, exposed for used in plug-ins.
 		 * 
-		 * Please note that you should not need to use the internal methods for
+		 * Please note that you should not need to use the employees methods for
 		 * anything other than a plug-in (and even then, try to avoid if possible).
-		 * The internal function may change between releases.
+		 * The employees function may change between releases.
 		 *
 		 *  @type object
 		 *  @default {}
@@ -14955,16 +14955,16 @@
 	
 	
 	/*
-	 * This is really a good bit rubbish this method of exposing the internal methods
+	 * This is really a good bit rubbish this method of exposing the employees methods
 	 * publicly... - To be fixed in 2.0 using methods on the prototype
 	 */
 	
 	
 	/**
-	 * Create a wrapper function for exporting an internal functions to an external API.
+	 * Create a wrapper function for exporting an employees functions to an external API.
 	 *  @param {string} fn API function name
 	 *  @returns {function} wrapped function
-	 *  @memberof DataTable#internal
+	 *  @memberof DataTable#employees
 	 */
 	function _fnExternApiFunc (fn)
 	{
@@ -14978,8 +14978,8 @@
 	
 	
 	/**
-	 * Reference to internal functions for use by plug-in developers. Note that
-	 * these methods are references to internal functions and are considered to be
+	 * Reference to employees functions for use by plug-in developers. Note that
+	 * these methods are references to employees functions and are considered to be
 	 * private. If you use these methods, be aware that they are liable to change
 	 * between versions.
 	 *  @namespace

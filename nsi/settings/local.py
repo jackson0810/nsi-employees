@@ -9,7 +9,7 @@ ALLOWED_HOSTS = []
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.environ['SECRET_KEY_EMPLOYEES']
 
 STATIC_ROOT = os.path.dirname(BASE_DIR) + '/static/'
 STATIC_URL = '/static/'
@@ -22,10 +22,10 @@ IS_PROD = False
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ['DATABASE_NAME'],
-        'USER': os.environ['DATABASE_USER'],
-        'PASSWORD': os.environ['DATABASE_PASSWORD'],
-        'HOST': os.environ['DATABASE_SERVER'],
+        'NAME': 'nsi',
+        'USER': 'nsi',
+        'PASSWORD': 'nsi',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }

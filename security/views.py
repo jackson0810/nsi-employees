@@ -25,11 +25,11 @@ def login_form(request, template_name='login.html'):
             authentication_error = None
 
             if request.user.is_authenticated():
-                return redirect('internal:home')
+                return redirect('employees:home')
 
             if request.method == 'POST':
                 if request.user.is_authenticated():
-                    return redirect(request.POST.get('next', 'internal:home'))
+                    return redirect(request.POST.get('next', 'employees:home'))
 
                 form = LoginForm(request.POST)
 
@@ -61,7 +61,7 @@ def login_form(request, template_name='login.html'):
                             user.dt_last_login = datetime.now()
                             user.save()
 
-                            return redirect(request.POST.get('next', 'internal:home'))
+                            return redirect(request.POST.get('next', 'employees:home'))
                         else:
                             has_error = True
                             messages.error(request, 'You do not have an active account.')
@@ -129,7 +129,7 @@ def create_new_password(request, user_uuid, temporary_password, template_name='c
             login(request, user)
             messages.success(request, 'Your password has been successfully reset.')
 
-            return redirect('internal:home')
+            return redirect('employees:home')
     else:
         if user.check_password(temporary_password):
             # check to see if the time period for use this password has expired.
