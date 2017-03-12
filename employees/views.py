@@ -1,4 +1,3 @@
-from datetime import datetime, timedelta
 import os
 import shutil
 import urllib3
