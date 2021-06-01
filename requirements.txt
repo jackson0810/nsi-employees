@@ -11,5 +11,5 @@ paste==2.0.3
 pillow==3.4.2
 python-dateutil==2.5.3
 sorl-thumbnail==12.3
-urllib3==1.14
+urllib3==1.26.5
 whitenoise==3.2.2
